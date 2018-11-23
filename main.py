@@ -60,6 +60,7 @@ def save_to_file(outputs, fname):
     raise NotImplementedError
     
 
+
 if __name__ == "__main__":
     train_data_fname = ""
     test_data_fname = ""
