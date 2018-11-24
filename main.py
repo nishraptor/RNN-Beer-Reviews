@@ -43,11 +43,19 @@ def process_train_data(data):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
 
-    b = data['review/text'].values.tolist()[0:100]
+    style = data['beer/style'].unique()
+
+    #one hot encoded vector
+    style_vector = [[0 if char != letter else 1 for char in style]
+              for letter in data['beer/style']]
 
 
-    #b = pd.unique(data['review/text'].values.ravel())
-    print(type(b))
+    review = data['review/overall'].unique()
+
+    #One hot encoded vector
+    review_vector = [[0 if char != letter else 1 for char in review]
+              for letter in data['review/overall']]
+
 
 def train_valid_split(data, labels):
     # TODO: Takes in train data and labels as numpy array (or a torch Tensor/ Variable) and
