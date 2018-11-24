@@ -17,6 +17,15 @@ def char2oh(str):
               for letter in str]
     return vector
 
+def oh2char(vector):
+    alphabet  = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/' """
+    str = ''
+    for i in vector:
+        for j in range(len(i)):
+            if i[j] != 0:
+                str += alphabet[j]
+    return str
+
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
 
