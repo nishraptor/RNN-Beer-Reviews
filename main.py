@@ -10,6 +10,12 @@ from configs import cfg
 import pandas as pd
 from nltk.translate import bleu_score
 
+# Functions we needed to implement to one-hot encode the vectors
+def char2oh(str):
+    alphabet  = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/' """
+    vector = [[0 if char != letter else 1 for char in alphabet]
+              for letter in str]
+    return vector
 
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
@@ -21,7 +27,13 @@ def load_data(fname):
 def process_train_data(data):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
-    raise NotImplementedError
+
+    b = data['review/text'].values.tolist()[0:100]
+
+
+    #b = pd.unique(data['review/text'].values.ravel())
+    print(type(b))
+
 def train_valid_split(data, labels):
     # TODO: Takes in train data and labels as numpy array (or a torch Tensor/ Variable) and
     # splits it into training and validation data.
