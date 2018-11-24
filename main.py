@@ -6,22 +6,22 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from models import *
-from config import cfg
+from configs import cfg
 import pandas as pd
 from nltk.translate import bleu_score
 
 
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
-    raise NotImplementedError
+
+    file = pd.read_csv(fname)
+    return file
 
 
 def process_train_data(data):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
     raise NotImplementedError
-
-    
 def train_valid_split(data, labels):
     # TODO: Takes in train data and labels as numpy array (or a torch Tensor/ Variable) and
     # splits it into training and validation data.
@@ -62,12 +62,16 @@ def save_to_file(outputs, fname):
 
 
 if __name__ == "__main__":
-    train_data_fname = ""
-    test_data_fname = ""
-    out_fname = ""
+    pd.set_option('display.expand_frame_repr', False)
+
+    train_data_fname = "Beeradvocate_Train.csv"
+    test_data_fname = "Beeradvocate_Test.csv"
+    out_fname = "output.txt"
+
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
+
     train_data, train_labels = process_train_data(train_data) # Converting DataFrame to numpy array
     X_train, y_train, X_valid, y_valid = train_valid_split(train_data, train_labels) # Splitting the train data into train-valid data
     X_test = process_test_data(test_data) # Converting DataFrame to numpy array
@@ -82,3 +86,4 @@ if __name__ == "__main__":
     train(model, X_train, y_train, X_valid, y_valid, cfg) # Train the model
     outputs = generate(model, X_test, cfg) # Generate the outputs for test data
     save_to_file(outputs, out_fname) # Save the generated outputs to a file
+

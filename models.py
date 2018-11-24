@@ -14,3 +14,4 @@ class baselineLSTM(nn.Module):
     def forward(self, sequence):
         # Takes in the sequence of the form (batch_size x sequence_length x input_dim) and
         # returns the output of form (batch_size x sequence_length x output_dim)
+        return
