@@ -36,10 +36,7 @@ def oh2char(vector):
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
     file = pd.read_csv(fname)
-
-    #Remove the nan VALUES:
-
-    return file.dropna(axis=0,how='any')
+    return file
 
 
 def process_train_data(data, beer_styles):
@@ -153,7 +150,7 @@ def pad_data(orig_data):
 
     return padded_data
 
-def train(model, data, val_index, cfg):
+def train(model, data, val_index, cfg,computing_device):
     # TODO: Train the model!
 
     #Define the loss function
@@ -254,8 +251,8 @@ if __name__ == "__main__":
     pd.set_option('display.expand_frame_repr', False)
     np.set_printoptions(threshold=np.nan)
 
-    train_data_fname = "Beeradvocate_Train.csv"
-    test_data_fname = "Beeradvocate_Test.csv"
+    train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
+    test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/Beeradvocate_Test.csv"
     out_fname = "output.txt"
 
     
@@ -272,7 +269,7 @@ if __name__ == "__main__":
         computing_device = torch.device("cpu")
     model.to(computing_device)
     
-    train(model, shuffled_data, val_index, cfg) # Train the model
+    train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
     outputs = generate(model, X_test, cfg) # Generate the outputs for test data
     save_to_file(outputs, out_fname) # Save the generated outputs to a file
 

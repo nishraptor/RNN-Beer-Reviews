@@ -11,5 +11,5 @@ cfg['L2_penalty'] = 1000# weighting constant for L2 regularization term; this is
 cfg['gen_temp'] = 1 # temperature to use while generating reviews
 cfg['max_len'] = 100# maximum character length of the generated reviews
 cfg['epochs'] =  2# number of epochs for which the model is trained
-cfg['cuda'] = False #True or False depending whether you want to run your model on a GPU or not. If you set this to True, make sure to start a GPU pod on ieng6 server
+cfg['cuda'] = True #True or False depending whether you want to run your model on a GPU or not. If you set this to True, make sure to start a GPU pod on ieng6 server
 cfg['train'] = True# True or False; True denotes that the model is bein deployed in training mode, False means the model is not being used to generate reviews
