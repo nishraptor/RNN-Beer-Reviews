@@ -214,6 +214,7 @@ def train(model, data, val_index, cfg,computing_device):
             #Update weights
             optimizer.step()
 
+            #Reinitialize the hidden states
             model.init_hidden(computing_device)
 
             del input
