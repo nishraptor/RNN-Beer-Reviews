@@ -15,16 +15,18 @@ class baselineLSTM(nn.Module):
         self.input_dim = config['input_dim']
         self.batch_size = config['batch_size']
         self.layers = config['layers']
+        self.hidden = None
+        self.init_hidden()
 
         self.lstm = nn.LSTM(self.input_dim, self.hidden_dim)
 
-        self.hidden = self.hidden()
 
 
 
     def init_hidden(self):
 
-        return (torch.zeros(self.layers, self.batch_size, self.hidden_dim),
+        self.hidden = None
+        self.hidden = (torch.zeros(self.layers, self.batch_size, self.hidden_dim),
                 torch.zeros(self.layers, self.batch_size, self.hidden_dim))
 
 
@@ -34,6 +36,7 @@ class baselineLSTM(nn.Module):
 
         out, self.hidden = self.lstm(sequence, self.hidden)
 
-        output = torch.nn.Softmax(out, dim=2)
+        softmax = torch.nn.Softmax()
 
+        output = softmax(out)
         return output
