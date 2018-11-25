@@ -221,8 +221,6 @@ def train(model, data, val_index, cfg,computing_device):
             del output
             print('minibatch num %s out of total: %s'% (str(minibatch_num),str(num_batch)))
 
-            if minibatch_num == 50:
-                break
 
         epoch_train_loss.append(sum(avg_train_loss) / len(avg_train_loss))
 
