@@ -179,7 +179,7 @@ def train(model, data, val_index, cfg,computing_device):
         minibatch_size = cfg['batch_size']
         num_batch = int(len(train_df.index) / minibatch_size)
 
-        model.init_hidden()
+        model.init_hidden(computing_device)
 
         for minibatch_num in range(num_batch):
 
@@ -214,7 +214,7 @@ def train(model, data, val_index, cfg,computing_device):
             #Update weights
             optimizer.step()
 
-            model.init_hidden()
+            model.init_hidden(computing_device)
 
             del input
             del output
