@@ -252,7 +252,7 @@ if __name__ == "__main__":
     np.set_printoptions(threshold=np.nan)
 
     train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
-    test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/Beeradvocate_Test.csv"
+    test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
     out_fname = "output.txt"
 
     
