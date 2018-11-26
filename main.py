@@ -85,7 +85,7 @@ def process_train_data(data, beer_styles):
     label_array = np.swapaxes(label_array, 0, 1)
 
     target = np.argmax(label_array, 2)
-    
+
     target = torch.from_numpy(target).long()
 
     return torch.from_numpy(train_array).float(), target.permute(1,0)
@@ -280,7 +280,7 @@ if __name__ == "__main__":
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(test_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     
-    model = baselineLSTM(cfg) # Replace this with model = <your model name>(cfg)
+    model = goodLSTM(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
         computing_device = torch.device("cuda")
     else:

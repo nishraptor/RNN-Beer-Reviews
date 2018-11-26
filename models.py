@@ -45,3 +45,47 @@ class baselineLSTM(nn.Module):
         out, self.hidden = self.lstm(sequence, self.hidden)
 
         return out
+
+class goodLSTM(nn.Module):
+    def __init__(self, config):
+        super(goodLSTM, self).__init__()
+
+        self.hidden_dim = config['hidden_dim']
+        self.input_dim = config['input_dim']
+        self.output_dim = config['output_dim']
+        self.batch_size = config['batch_size']
+        self.layers = config['layers']
+        self.hidden = None
+
+        if config['cuda']:
+            computing_device = torch.device("cuda")
+        else:
+            computing_device = torch.device("cpu")
+
+        self.init_hidden(computing_device)
+
+        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim)
+
+        self.fc = nn.Linear(self.hidden_dim, self.output_dim)
+
+
+    def init_hidden(self, computing_device):
+
+        self.hidden = None
+        self.hidden = (torch.zeros(self.layers, self.batch_size, self.hidden_dim),
+                       torch.zeros(self.layers, self.batch_size, self.hidden_dim))
+
+        self.hidden = [tensor.to(computing_device) for tensor in self.hidden]
+
+    def forward(self, sequence):
+
+        out, self.hidden = self.lstm(sequence, self.hidden)
+
+        output = self.fc(out.view(1,-1))
+
+        return output, self.hidden
+
+
+
+
+
