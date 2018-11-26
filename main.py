@@ -103,8 +103,7 @@ def process_train_data(data, beer_styles):
     else:
         print("NOt equal!!!")
 
-    break
-
+    
     target = torch.from_numpy(target).long()
 
     return torch.from_numpy(train_array).float(), target.permute(1,0)
