@@ -114,11 +114,41 @@ def train_valid_split(data):
 
     
 
-def process_test_data(data):
+def process_test_data(data, beer_styles):
     # TODO: Takes in pandas DataFrame and returns a numpy array (or a torch Tensor/ Variable)
     # that has all input features. Note that test data does not contain any review so you don't
     # have to worry about one hot encoding the data.
-    raise NotImplementedError
+
+    # one hot encoded vector
+    style_vector = [[0 if char != letter else 1 for char in beer_styles]
+                    for letter in data['beer/style']]
+
+    style_vector = np.array(style_vector)
+
+    # Numeric Values for the overall review score
+    score_vector = data['review/overall'].values
+
+    # Generate a text review array of size batch_size x 1 (only one char '{' to one-hot encode)
+    sos_string = '{' * len(data.index)
+    sos_list = list(sos_string)
+    text_array = [char2oh(char) for char in sos_list]
+    text_array = np.array(text_array)
+
+    # Convert the style vector to a 3D-tensor
+    style_arrays = np.repeat(style_vector[:, np.newaxis, :], text_array.shape[1], axis=1)
+
+    # Convert the score vector to a 3D-tensor
+    score_vector = score_vector.reshape(-1, 1)
+    score_arrays = np.repeat(score_vector[:, np.newaxis, :], text_array.shape[1], axis=1)
+
+    # Append the style arrays and the score arrays to text arrays
+    review_arrays = np.append(text_array, style_arrays, axis=2)
+    review_arrays = np.append(review_arrays, score_arrays, axis=2)
+
+    train_array = np.swapaxes(review_arrays, 0, 1)
+
+    return torch.from_numpy(train_array).float()
+
 
 def get_beer_style(data):
 
@@ -219,7 +249,7 @@ def train(model, data, val_index, cfg,computing_device):
 
             del input
             del output
-            print('minibatch num %s out of total: %s'% (str(minibatch_num),str(num_batch)))
+            print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
 
         epoch_train_loss.append(sum(avg_train_loss) / len(avg_train_loss))
@@ -259,7 +289,7 @@ if __name__ == "__main__":
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
-    #X_test = process_test_data(test_data) # Converting DataFrame to numpy array
+    X_test = process_test_data(test_data) # Converting DataFrame to numpy array
     
     model = baselineLSTM(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:

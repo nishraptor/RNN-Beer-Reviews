@@ -29,6 +29,7 @@ class baselineLSTM(nn.Module):
 
 
 
+
     def init_hidden(self, computing_device):
 
         self.hidden = None
@@ -43,7 +44,4 @@ class baselineLSTM(nn.Module):
 
         out, self.hidden = self.lstm(sequence, self.hidden)
 
-        softmax = torch.nn.Softmax()
-
-        output = softmax(out)
-        return output
+        return out
