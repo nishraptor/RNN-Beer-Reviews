@@ -82,7 +82,7 @@ class goodLSTM(nn.Module):
         out, self.hidden = self.lstm(sequence, self.hidden)
         print(out.size())
 
-        output = self.fc(out.view(1,-1))
+        output = self.fc(out)
 
         return output, self.hidden
 
