@@ -80,9 +80,11 @@ class goodLSTM(nn.Module):
     def forward(self, sequence):
 
         out, self.hidden = self.lstm(sequence, self.hidden)
-        print(out.size())
+        #print(out.size())
 
         output = self.fc(out)
+        print(type(out))
+        print(type(output))
 
         return output, self.hidden
 
