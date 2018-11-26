@@ -64,7 +64,7 @@ class goodLSTM(nn.Module):
 
         self.init_hidden(computing_device)
 
-        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim)
+        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim, num_layers=self.layers)
 
         self.fc = nn.Linear(self.hidden_dim, self.output_dim)
 

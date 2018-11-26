@@ -262,7 +262,7 @@ def save_to_file(outputs, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
     # the file in .txt format.
     raise NotImplementedError
-    
+
 
 if __name__ == "__main__":
     pd.set_option('display.expand_frame_repr', False)
