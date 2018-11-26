@@ -96,6 +96,14 @@ def process_train_data(data, beer_styles):
 
             target[i][j] = max_ind
 
+    new_target = np.argmax(label_array, 2)
+
+    if np.array_equal(target, new_target):
+        print("Equal")
+    else:
+        print("NOt equal!!!")
+
+    break
 
     target = torch.from_numpy(target).long()
 
