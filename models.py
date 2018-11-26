@@ -83,10 +83,10 @@ class goodLSTM(nn.Module):
         #print(out.size())
 
         output = self.fc(out)
-        print(type(out))
-        print(type(output))
+        #print(type(out))
+        #print(type(output))
 
-        return output, self.hidden
+        return output
 
 
 
