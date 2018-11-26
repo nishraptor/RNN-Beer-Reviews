@@ -84,25 +84,7 @@ def process_train_data(data, beer_styles):
     train_array = np.swapaxes(train_array, 0, 1)
     label_array = np.swapaxes(label_array, 0, 1)
 
-
-    target = np.zeros((label_array.shape[0], label_array.shape[1]))
-    for i in range(len(label_array)):
-        for j in range(len(label_array[i])):
-            max_ind = 0
-            for k in range (len(label_array[i][j])):
-                if label_array[i][j][k] == 1:
-                    max_ind = k
-                    break
-
-            target[i][j] = max_ind
-
-    new_target = np.argmax(label_array, 2)
-
-    if np.array_equal(target, new_target):
-        print("Equal")
-    else:
-        print("NOt equal!!!")
-
+    target = np.argmax(label_array, 2)
     
     target = torch.from_numpy(target).long()
 
