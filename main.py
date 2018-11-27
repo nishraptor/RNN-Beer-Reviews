@@ -175,6 +175,8 @@ def pad_data(orig_data):
 def train(model, data, val_index, cfg,computing_device):
     # TODO: Train the model!
 
+    print("Training Model!")
+
     #Define the loss function
     criterion = nn.CrossEntropyLoss()
 
