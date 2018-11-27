@@ -307,7 +307,8 @@ def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
     print(X_test.shape)
-    output = model()
+    print(X_test[:,0,:].shape)
+    output = model(X_test[:,0,:].shape)
     print(output.shape)
     
 
