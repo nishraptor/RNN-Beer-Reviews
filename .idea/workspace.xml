@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configs.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,14 +24,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="9235" />
+          <entry key="py" value="9240" />
           <entry key="txt" value="275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="275" />
-          <entry key="Python" value="9235" />
+          <entry key="Python" value="9240" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -93,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/configs.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="287">
-              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -101,7 +99,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="-1804">
               <caret line="61" selection-start-line="61" selection-end-line="61" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -245,20 +243,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00035" summary="Testing code for the generation of the strings">
-      <created>1543341645629</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1543341645629</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Testing code for the generation of the strings">
-      <created>1543341726484</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1543341726484</updated>
     </task>
     <task id="LOCAL-00037" summary="Testing code for the generation of the strings">
       <created>1543342214732</created>
@@ -589,7 +573,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543360771197</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543361021474</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1543361021474</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543361164101</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1543361164101</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -670,7 +668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="-1804">
           <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
@@ -685,7 +683,7 @@
     <entry file="file://$PROJECT_DIR$/configs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
