@@ -266,37 +266,41 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
-            # Measure the loss on validation data
-            if minibatch_num % 1000 == 0:
+            break
 
-                val_sum = 0
+        #Run model on validation set
 
-                num_val_batch = int(len(val_df.index) / minibatch_size)
+        val_sum = 0
 
-                for val_minibatch_num in range(num_val_batch):
-                    print("Val minibatch num: ", val_minibatch_num)
-                    start_index = val_minibatch_num * minibatch_size
-                    end_index = (val_minibatch_num + 1) * minibatch_size
+        num_val_batch = int(len(val_df.index) / minibatch_size)
 
-                    minibatch_df = val_df[start_index:end_index]
-                    val_input, val_target = process_train_data(minibatch_df, beer_styles)
-                    val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
+        for val_minibatch_num in range(num_val_batch):
 
-                    with torch.no_grad():
-                        val_output = model(val_input)
+            start_index = val_minibatch_num * minibatch_size
+            end_index = (val_minibatch_num + 1) * minibatch_size
 
-                    val_output = val_output.permute(1,2,0)
-                    loss = criterion(val_output, val_target)
+            minibatch_df = val_df[start_index:end_index]
+            val_input, val_target = process_train_data(minibatch_df, beer_styles)
+            val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
 
-                val_sum += loss
-                minibatch_val_loss.append(val_sum)
+            with torch.no_grad():
+                val_output = model(val_input)
 
-                model.init_hidden(computing_device)
+            val_output = val_output.permute(1,2,0)
+            loss = criterion(val_output, val_target)
+
+            val_sum += loss
 
             break
+
+        minibatch_val_loss.append(val_sum)
+
+        model.init_hidden(computing_device)
+
         break
 
 
+    print('avg mb train loss and minibatch val loss:')
     print(avg_mb_train_loss)
     print(minibatch_val_loss)
 
