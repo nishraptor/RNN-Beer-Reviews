@@ -44,13 +44,13 @@ def process_train_data(data, beer_styles):
     # that has all features (including characters in one hot encoded form).
 
 
-    # one hot encoded vector
+    #One-hot encoding the beer style
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
 
     style_vector = np.array(style_vector)
 
-    #Numeric Values for the overall review score
+    #Numeric Values for the overall review score (Not one-hot encoded)
     score_vector = data['review/overall'].values
 
 
@@ -84,8 +84,11 @@ def process_train_data(data, beer_styles):
     train_array = np.swapaxes(train_array, 0, 1)
     label_array = np.swapaxes(label_array, 0, 1)
 
+    #Get the max index of the one-hot encoded vectors in labels
+    #for use with CrossEntropyLoss
     target = np.argmax(label_array, 2)
 
+    #Typing requirement for CrossEntropyLoss
     target = torch.from_numpy(target).long()
 
     return torch.from_numpy(train_array).float(), target.permute(1,0)
@@ -96,7 +99,7 @@ def train_valid_split(data):
     #Shuffle the dataset
     data = data.sample(frac=1).reset_index(drop=True)
 
-    #Get the index to the end of the validation set
+    #Get the index of the end of the validation set
     val_index = int(len(data.index)* 0.1)
 
     return data, val_index
@@ -185,21 +188,30 @@ def train(model, data, val_index, cfg,computing_device):
 
     train_df, val_df = data[0:val_index], data[val_index:]
 
+    #Create the validation set
+    val_input, val_target =  process_train_data(val_df,beer_styles)
+    val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
+
+
     #Training loss per epoch, in a list.
-    epoch_train_loss = []
-    epoch_val_loss = []
+    minibatch_train_loss = []
+    minibatch_val_loss = []
+    avg_mb_train_loss = []
 
     #Iterate over cfg[epochs]
     for epoch in range(cfg['epochs']):
         
-        avg_train_loss = []
-    
         #Iterate through minbatch (cfg[batch})
         minibatch_size = cfg['batch_size']
         num_batch = int(len(train_df.index) / minibatch_size)
 
+        #Reset hidden states
         model.init_hidden(computing_device)
 
+        #Avg loss
+        avg_loss = 0
+
+        #Train over every minibatch
         for minibatch_num in range(num_batch):
 
 
@@ -225,7 +237,18 @@ def train(model, data, val_index, cfg,computing_device):
             #Compute Loss
             loss = criterion(output, target)
 
-            avg_train_loss.append(loss)
+            #Save loss value
+            minibatch_train_loss.append(loss)
+
+            #Add loss to average calculation
+            avg_loss += loss
+
+            #Get the average mb loss every 1000 mb
+            if minibatch_num % 1000 == 0:
+
+                #Save avg mb loss
+                avg_mb_train_loss.append(avg_loss / minibatch_num)
+                avg_loss = 0
 
             #Backpropogate
             loss.backward()
@@ -236,21 +259,33 @@ def train(model, data, val_index, cfg,computing_device):
             #Reinitialize the hidden states
             model.init_hidden(computing_device)
 
+            #Reduce memory consumption
             del input
             del output
+
+            #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
+            # Measure the loss on validation data
+            if minibatch_num % 1000 == 0:
 
-        epoch_train_loss.append(sum(avg_train_loss) / len(avg_train_loss))
+                with torch.no_grad():
+                    val_output = model(val_input)
+
+                val_output = val_output.permute(1,2,0)
+                loss = criterion(val_output, val_target)
+                minibatch_val_loss.append(loss)
+
+                model.init_hidden(computing_device)
+
+            break
+        break
 
 
+    print(avg_mb_train_loss)
+    print(minibatch_val_loss)
 
-        avg_val_loss = 0
-        #Measure the loss on validation data
-
-    print(epoch_train_loss)
-
-
+    torch.save(model, PATH)
     
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review

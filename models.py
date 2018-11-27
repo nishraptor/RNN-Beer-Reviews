@@ -15,6 +15,7 @@ class baselineLSTM(nn.Module):
         self.input_dim = config['input_dim']
         self.batch_size = config['batch_size']
         self.layers = config['layers']
+        self.output_dim = config['output_dim']
         self.hidden = None
 
         if config['cuda']:
@@ -25,9 +26,7 @@ class baselineLSTM(nn.Module):
         self.init_hidden(computing_device)
 
         self.lstm = nn.LSTM(self.input_dim, self.hidden_dim)
-
-
-
+        self.fc = nn.LSTM(self.hidden_dim, self.output_dim)
 
 
     def init_hidden(self, computing_device):
@@ -43,6 +42,8 @@ class baselineLSTM(nn.Module):
         # returns the output of form (batch_size x sequence_length x output_dim)
 
         out, self.hidden = self.lstm(sequence, self.hidden)
+
+        out = self.forward(out)
 
         return out
 
