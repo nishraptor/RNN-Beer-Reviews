@@ -62,32 +62,30 @@ def process_train_data(data, beer_styles, computing_device):
     text_tensor = torch.from_numpy(np.array(text_arrays)).to(computing_device)
 
     # Convert the style vector to a 3D-tensor
-    style_tensor = style_tensor.unsqueeze(0).to(computing_device)
-    style_tensor = style_tensor.expand(text_tensor.size()[1], style_tensor.size()[1], style_tensor.size()[2]).to(
-        computing_device)
+    style_tensor = style_tensor.unsqueeze(0)
+    style_tensor = style_tensor.expand(text_tensor.size()[1], style_tensor.size()[1], style_tensor.size()[2])
 
     # Convert the score vector to a 3D-tensor
     score_tensor = score_tensor.unsqueeze(0).permute(1, 0).unsqueeze(0).to(computing_device)
-    score_tensor = score_tensor.expand(text_tensor.size()[1], score_tensor.size()[1], score_tensor.size()[2]).to(
-        computing_device)
+    score_tensor = score_tensor.expand(text_tensor.size()[1], score_tensor.size()[1], score_tensor.size()[2])
 
     # Append the style arrays and the score arrays to text arrays
     text_tensor = text_tensor.permute(1, 0, 2)
-    review_tensor = torch.cat((text_tensor, style_tensor, score_tensor.long()), dim=2).to(computing_device)
+    review_tensor = torch.cat((text_tensor, style_tensor, score_tensor.long()), dim=2)
 
     review_tensor = review_tensor.permute(1, 0, 2)
-    train_tensor = review_tensor[:, :-1, :].to(computing_device)
+    train_tensor = review_tensor[:, :-1, :]
 
     # Remove the first character to get the label array
-    label_tensor = review_tensor[:, 1:, :84].to(computing_device)
+    label_tensor = review_tensor[:, 1:, :84]
 
     # Swap the axes
-    train_tensor = train_tensor.permute(1, 0, 2).float().to(computing_device)
+    train_tensor = train_tensor.permute(1, 0, 2).float()
 
     # Get the max index of the one-hot encoded vectors in labels
     # for use with CrossEntropyLoss, also typing requirement
     # target = np.argmax(label_array, 2)
-    target = label_tensor.argmax(dim=2).long().to(computing_device)
+    target = label_tensor.argmax(dim=2).long()
 
 
     return train_tensor, target
