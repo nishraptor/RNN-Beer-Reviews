@@ -308,7 +308,7 @@ def generate(model, X_test, cfg):
     # corresponding to each input row in test data.
     print(X_test.shape)
     print(X_test[:,0:4,:].shape)
-    output = model(X_test[:,0:4,:].shape)
+    output = model(X_test[:,0:4,:])
     print(output.shape)
     
 
