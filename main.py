@@ -191,8 +191,8 @@ def train(model, data, val_index, cfg,computing_device):
     train_df, val_df = data[0:val_index], data[val_index:]
 
     #Create the validation set
-    val_input, val_target =  process_train_data(val_df,beer_styles)
-    val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
+    #val_input, val_target =  process_train_data(val_df,beer_styles)
+    #val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
 
 
     #Training loss per epoch, in a list.
@@ -294,7 +294,7 @@ def generate(model, X_test, cfg):
     # corresponding to each input row in test data.
     raise NotImplementedError
     
-    
+
 def save_to_file(outputs, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
     # the file in .txt format.
