@@ -101,6 +101,9 @@ def process_train_data(data, beer_styles, computing_device):
     # target = np.argmax(label_array, 2)
     target = label_tensor.argmax(dim=2).long().to(computing_device)
 
+    print("Train size: ", train_tensor.size())
+    print("Target size: ", target.size())
+
     # Typing requirement for CrossEntropyLoss
     # target = torch.from_numpy(target).long()
 
