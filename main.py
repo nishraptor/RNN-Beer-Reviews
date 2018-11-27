@@ -156,7 +156,7 @@ def pad_data(orig_data):
 
     max_len = len(max(orig_data, key=len))
 
-    array_list = [np.append(array, np.tile(char2oh('}'), max_len - array.size[0])) for array in orig_data]
+    array_list = [np.append(array, np.tile(char2oh('}'), max_len - array.shape[0])) for array in orig_data]
 
     return np.asarray(array_list)
 
