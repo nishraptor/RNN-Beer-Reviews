@@ -306,7 +306,8 @@ def train(model, data, val_index, cfg,computing_device):
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
-    raise NotImplementedError
+    output = model(X_test)
+    print(output.shape)
     
 
 def save_to_file(outputs, fname):
@@ -337,7 +338,7 @@ if __name__ == "__main__":
         computing_device = torch.device("cpu")
     model.to(computing_device)
     
-    train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+     #train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
     outputs = generate(model, X_test, cfg) # Generate the outputs for test data
     save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
