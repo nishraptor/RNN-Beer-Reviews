@@ -193,22 +193,6 @@ def train(model, data, val_index, cfg,computing_device):
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
 
-    #Create the validation set
-    val_inputs, val_targets = [], []
-    minibatch_size = cfg['batch_size']
-    num_val_batch = int(len(val_df.index) / minibatch_size)
-
-    for minibatch_num in range(num_val_batch):
-        start_index = minibatch_num * minibatch_size
-        end_index = (minibatch_num + 1) * minibatch_size
-
-        minibatch_df = val_df[start_index:end_index]
-        val_input, val_target =  process_train_data(minibatch_df, beer_styles)
-        val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
-        val_inputs.append(val_input)
-        val_targets.append(val_target)
-
-
     #Training loss per epoch, in a list.
     minibatch_train_loss = []
     minibatch_val_loss = []
@@ -286,13 +270,22 @@ def train(model, data, val_index, cfg,computing_device):
             if minibatch_num % 1000 == 0:
 
                 val_sum = 0
-                for i in range(len(val_inputs)):
+
+                num_val_batch = int(len(val_df.index) / minibatch_size)
+
+                for minibatch_num in range(num_val_batch):
+                    start_index = minibatch_num * minibatch_size
+                    end_index = (minibatch_num + 1) * minibatch_size
+
+                    minibatch_df = val_df[start_index:end_index]
+                    val_input, val_target = process_train_data(minibatch_df, beer_styles)
+                    val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
 
                     with torch.no_grad():
-                        val_output = model(val_inputs[i])
+                        val_output = model(val_input)
 
                     val_output = val_output.permute(1,2,0)
-                    loss = criterion(val_output, val_targets[i])
+                    loss = criterion(val_output, val_target)
 
                 val_sum += loss
                 minibatch_val_loss.append(val_sum)
