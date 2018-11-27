@@ -326,6 +326,7 @@ def generate(model, X_test, cfg):
 
     print(softmax.shape)
     softmax = softmax.tolist()
+    print(softmax)
     print(np.random.choice(list(alphabet),5,p=softmax))
 
 
