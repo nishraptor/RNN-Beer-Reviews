@@ -249,7 +249,7 @@ def train(model, data, val_index, cfg,computing_device):
             if minibatch_num % 1000 == 0:
 
                 #Save avg mb loss
-                avg_mb_train_loss.append(avg_loss / minibatch_num)
+                avg_mb_train_loss.append(avg_loss / minibatch_size)
                 avg_loss = 0
 
             #Backpropogate
