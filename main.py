@@ -306,7 +306,8 @@ def train(model, data, val_index, cfg,computing_device):
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
-    output = model(X_test[0])
+    print(X_test.shape)
+    output = model()
     print(output.shape)
     
 
