@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,14 +55,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="169" />
+          <entry key="py" value="319" />
           <entry key="txt" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="48" />
-          <entry key="Python" value="169" />
+          <entry key="Python" value="319" />
         </counts>
       </usages-collector>
     </session>
@@ -83,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state relative-caret-position="160">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -92,11 +93,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="312" column="4" lean-forward="true" selection-start-line="312" selection-start-column="4" selection-end-line="312" selection-end-column="4" />
+            <state relative-caret-position="465">
+              <caret line="317" column="4" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543341573183" expanded="true" signature="9788:9793" ph="..." />
+                <marker date="1543342483960" expanded="true" signature="9820:9869" ph="..." />
+                <marker date="1543342483960" expanded="true" signature="9902:9907" ph="..." />
               </folding>
             </state>
           </provider>
@@ -470,7 +472,28 @@
       <option name="project" value="LOCAL" />
       <updated>1543341479121</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Testing code for the generation of the strings">
+      <created>1543341645629</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1543341645629</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Testing code for the generation of the strings">
+      <created>1543341726484</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1543341726484</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Testing code for the generation of the strings">
+      <created>1543342214732</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1543342214732</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -534,13 +557,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Testing code for the generation of the strings" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/configs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-575">
@@ -551,13 +567,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="312" column="4" lean-forward="true" selection-start-line="312" selection-start-column="4" selection-end-line="312" selection-end-column="4" />
+        <state relative-caret-position="465">
+          <caret line="317" column="4" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543341573183" expanded="true" signature="9788:9793" ph="..." />
+            <marker date="1543342483960" expanded="true" signature="9820:9869" ph="..." />
+            <marker date="1543342483960" expanded="true" signature="9902:9907" ph="..." />
           </folding>
         </state>
       </provider>

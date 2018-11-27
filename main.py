@@ -307,10 +307,24 @@ def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
     print(X_test.shape)
-    print(X_test[:,0:4,:].shape)
+    print(X_test[:,0:1,:].shape)
     X_test = X_test.to(computing_device)
-    output = model(X_test[:,0:4,:])
+    output = model(X_test[:,0:1,:])
     print(output.shape)
+
+    softmax = softmax_with_temperature(output.numpy())
+    print(sum(softmax))
+
+def softmax_with_temperature(output):
+    temperature = cfg['gen_temp']
+
+    return np.exp(temperature)/np.sum(np.exp(temperature))
+
+
+
+
+
+
     
 
 def save_to_file(outputs, fname):
