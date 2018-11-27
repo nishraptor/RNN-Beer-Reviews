@@ -83,8 +83,7 @@ def process_train_data(data, beer_styles, computing_device):
     # review_arrays = np.append(text_arrays, style_arrays, axis=2)
     # review_arrays = np.append(review_arrays, score_arrays, axis=2)
 
-    print(review_tensor.size())
-
+    review_tensor = review_tensor.permute(1, 0, 2)
     # Remove the last character to get the train array
     # train_array = review_arrays[:,:-1,:]
     train_tensor = review_tensor[:, :-1, :].to(computing_device)
