@@ -324,6 +324,10 @@ def generate(model, X_test, cfg):
             #Softmax the output of the review
             softmax = softmax_with_temperature(output[:,review,:].cpu().numpy())
             [softmax] = softmax.tolist()
+
+            #Prevent floating point errors:
+            softmax = [x + (1 - sum(softmax))/len(softmax) for x in softmax]
+
             print(softmax)
             print(len(softmax))
             print(sum(softmax))
