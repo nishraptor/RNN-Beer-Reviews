@@ -315,11 +315,10 @@ def generate(model, X_test, cfg):
     print(output.shape)
     print(output[:,0,:])
 
-    softmax = softmax_with_temperature(output.cpu().numpy())
+    softmax = softmax_with_temperature(output[:,0,:].cpu().numpy())
+    print(softmax)
     print(np.sum(softmax))
 
-    softmax = softmax_with_temperature(output[:,0,:].cpu().numpy())
-    print(np.sum(softmax))
     print(np.max(softmax))
 
 def softmax_with_temperature(output):
