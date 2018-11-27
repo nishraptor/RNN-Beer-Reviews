@@ -304,7 +304,7 @@ def train(model, data, val_index, cfg,computing_device):
     print(avg_mb_train_loss)
     print(minibatch_val_loss)
 
-    torch.save(model, PATH)
+    torch.save(model, 'checkpoint.pth')
     
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
