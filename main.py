@@ -155,6 +155,8 @@ def pad_data(orig_data):
     # representation in one hot encoding.
 
     max_len = len(max(orig_data, key=len))
+    print(char2oh('}'))
+    print(max_len - orig_data[0].shape[0])
     test_array = np.tile(char2oh('}'), max_len - orig_data[0].shape[0])
     print(test_array.shape)
 
