@@ -324,6 +324,9 @@ def generate(model, X_test, cfg):
             #Softmax the output of the review
             softmax = softmax_with_temperature(output[:,review,:].cpu().numpy())
             [softmax] = softmax.tolist()
+            print(softmax)
+            print(len(softmax))
+            print(sum(softmax))
 
             #Generate character distribution
             print(np.random.choice(list(alphabet), 2, p=softmax))
