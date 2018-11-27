@@ -48,11 +48,9 @@ def process_train_data(data, beer_styles, computing_device):
                     for letter in data['beer/style']]
 
     style_tensor = torch.from_numpy(np.array(style_vector))
-    style_vector = np.array(style_vector)
 
     # Numeric Values for the overall review score (Not one-hot encoded)
     score_tensor = torch.from_numpy(data['review/overall'].values)
-    score_vector = data['review/overall'].values
 
     # Get review texts and pad them with <EOS> character '}'
     text_list = data['review/text'].values
@@ -62,51 +60,35 @@ def process_train_data(data, beer_styles, computing_device):
     # One-hot encoding the review text
     text_arrays = [char2oh(review) for review in padded_text_list]
     text_tensor = torch.from_numpy(np.array(text_arrays)).to(computing_device)
-    # text_arrays = np.array(text_arrays)
 
     # Convert the style vector to a 3D-tensor
     style_tensor = style_tensor.unsqueeze(0)
     style_tensor = style_tensor.expand(text_tensor.size()[1], style_tensor.size()[1], style_tensor.size()[2]).to(
         computing_device)
-    # style_arrays = np.repeat(style_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
 
     # Convert the score vector to a 3D-tensor
     score_tensor = score_tensor.unsqueeze(0).permute(1, 0).unsqueeze(0)
     score_tensor = score_tensor.expand(text_tensor.size()[1], score_tensor.size()[1], score_tensor.size()[2]).to(
         computing_device)
-    # score_vector = score_vector.reshape(-1,1)
-    # score_arrays = np.repeat(score_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
 
     # Append the style arrays and the score arrays to text arrays
     text_tensor = text_tensor.permute(1, 0, 2)
     review_tensor = torch.cat((text_tensor, style_tensor, score_tensor.long()), dim=2).to(computing_device)
-    # review_arrays = np.append(text_arrays, style_arrays, axis=2)
-    # review_arrays = np.append(review_arrays, score_arrays, axis=2)
 
     review_tensor = review_tensor.permute(1, 0, 2)
-    # Remove the last character to get the train array
-    # train_array = review_arrays[:,:-1,:]
     train_tensor = review_tensor[:, :-1, :].to(computing_device)
 
     # Remove the first character to get the label array
-    # label_array = review_arrays[:,1:,:84]
     label_tensor = review_tensor[:, 1:, :84].to(computing_device)
 
     # Swap the axes
     train_tensor = train_tensor.permute(1, 0, 2).float().to(computing_device)
-    # train_array = np.swapaxes(train_array, 0, 1)
-    # label_array = np.swapaxes(label_array, 0, 1)
 
     # Get the max index of the one-hot encoded vectors in labels
     # for use with CrossEntropyLoss, also typing requirement
     # target = np.argmax(label_array, 2)
     target = label_tensor.argmax(dim=2).long().to(computing_device)
 
-    print("Train size: ", train_tensor.size())
-    print("Target size: ", target.size())
-
-    # Typing requirement for CrossEntropyLoss
-    # target = torch.from_numpy(target).long()
 
     return train_tensor, target
 
