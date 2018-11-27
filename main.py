@@ -306,8 +306,9 @@ def train(model, data, val_index, cfg,computing_device):
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
-    print(X_test.shape)
-    print(X_test[:,0:4,:].shape)
+
+    alphabet = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
+
     X_test = X_test.to(computing_device)
 
     with torch.no_grad():
@@ -317,21 +318,19 @@ def generate(model, X_test, cfg):
 
     softmax = softmax_with_temperature(output[:,0,:].cpu().numpy())
     print(softmax)
+
+
     print(np.sum(softmax))
 
-    print(np.max(softmax))
+
+    print(np.argmax(softmax))
+    print(np.random.choice(list(alphabet),5,p=softmax))
+
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
 
     return np.exp(output/temperature)/np.sum(np.exp(output/temperature))
-
-
-
-
-
-
-    
 
 def save_to_file(outputs, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
@@ -354,14 +353,14 @@ if __name__ == "__main__":
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(test_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     
-    model = baselineLSTM(cfg) # Replace this with model = <your model name>(cfg)
+    model = goodLSTM(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
         computing_device = torch.device("cuda")
     else:
         computing_device = torch.device("cpu")
     model.to(computing_device)
     
-     #train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+    #train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
     outputs = generate(model, X_test, cfg) # Generate the outputs for test data
     save_to_file(outputs, out_fname) # Save the generated outputs to a file
 

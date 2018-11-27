@@ -20,4 +20,4 @@ def oh2char(vector):
                 str += alphabet[j]
     return str
 
-print(oh2char(char2oh('Hello @@@@@ There!')))
+print()
