@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="" />
+    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +24,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="8162" />
+          <entry key="py" value="8259" />
           <entry key="txt" value="275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="275" />
-          <entry key="Python" value="8162" />
+          <entry key="Python" value="8259" />
         </counts>
       </usages-collector>
     </session>
@@ -78,13 +80,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-500">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="85" />
+            <state relative-caret-position="1017">
+              <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543355535571" expanded="true" signature="1051:1056" ph="..." />
-                <marker date="1543355535571" expanded="true" signature="4331:4337" ph="..." />
-                <marker date="1543355535571" expanded="true" signature="4583:4588" ph="..." />
+                <marker date="1543356144939" expanded="true" signature="1051:1056" ph="..." />
+                <marker date="1543356144939" expanded="true" signature="4421:4427" ph="..." />
+                <marker date="1543356144939" expanded="true" signature="4673:4678" ph="..." />
               </folding>
             </state>
           </provider>
@@ -208,20 +210,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00005" summary="Added support for cuda on gpu cluster">
-      <created>1543189600740</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1543189600740</updated>
-    </task>
-    <task id="LOCAL-00006" summary="fixed softmax output and print loss">
-      <created>1543200821016</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1543200821016</updated>
     </task>
     <task id="LOCAL-00007" summary=" Fixed process_test_data">
       <created>1543201023586</created>
@@ -552,7 +540,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543355537885</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543355637207</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1543355637207</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543355709192</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1543355709192</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -640,13 +642,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="85" />
+        <state relative-caret-position="1017">
+          <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543355535571" expanded="true" signature="1051:1056" ph="..." />
-            <marker date="1543355535571" expanded="true" signature="4331:4337" ph="..." />
-            <marker date="1543355535571" expanded="true" signature="4583:4588" ph="..." />
+            <marker date="1543356144939" expanded="true" signature="1051:1056" ph="..." />
+            <marker date="1543356144939" expanded="true" signature="4421:4427" ph="..." />
+            <marker date="1543356144939" expanded="true" signature="4673:4678" ph="..." />
           </folding>
         </state>
       </provider>
