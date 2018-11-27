@@ -273,9 +273,10 @@ def train(model, data, val_index, cfg,computing_device):
 
                 num_val_batch = int(len(val_df.index) / minibatch_size)
 
-                for minibatch_num in range(num_val_batch):
-                    start_index = minibatch_num * minibatch_size
-                    end_index = (minibatch_num + 1) * minibatch_size
+                for val_minibatch_num in range(num_val_batch):
+                    print("Val minibatch num: ", val_minibatch_num)
+                    start_index = val_minibatch_num * minibatch_size
+                    end_index = (val_minibatch_num + 1) * minibatch_size
 
                     minibatch_df = val_df[start_index:end_index]
                     val_input, val_target = process_train_data(minibatch_df, beer_styles)
