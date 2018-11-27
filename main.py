@@ -196,7 +196,7 @@ def train(model, data, val_index, cfg,computing_device):
     #Create the validation set
     val_inputs, val_targets = [], []
     minibatch_size = cfg['batch_size']
-    num_val_batch = int(len(val_df.indez) / minibatch_size)
+    num_val_batch = int(len(val_df.index) / minibatch_size)
 
     for minibatch_num in range(num_val_batch):
         start_index = minibatch_num * minibatch_size
