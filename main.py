@@ -188,7 +188,7 @@ def train(model, data, val_index, cfg,computing_device):
 
     #Create the seperate dataloaders for Train and Validation
 
-    train_df, val_df = data[0:val_index], data[val_index:]
+    val_df, train_df = data[0:val_index], data[val_index:]
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
@@ -266,8 +266,6 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
-            break
-
         #Run model on validation set
 
         val_sum = 0
@@ -292,13 +290,11 @@ def train(model, data, val_index, cfg,computing_device):
 
             val_sum += loss
 
-            break
 
         minibatch_val_loss.append(val_sum)
 
         model.init_hidden(computing_device)
 
-        break
 
 
     print('avg mb train loss and minibatch val loss:')
