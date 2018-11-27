@@ -57,7 +57,7 @@ def process_train_data(data, beer_styles, computing_device):
 
     # One-hot encoding the review text
     text_arrays = [char2oh('{' + str(text) + '}') for text in text_list]
-    text_tensor = torch.from_numpy(text_arrays).to(computing_device)
+    text_tensor = torch.from_numpy(np.array(text_arrays)).to(computing_device)
 
     print(text_tensor.size())
 
