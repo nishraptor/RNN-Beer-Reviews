@@ -60,8 +60,6 @@ def process_train_data(data, beer_styles, computing_device):
 
     text_tensor = torch.from_numpy(pad_data(text_arrays)).to(computing_device)
 
-    print(text_tensor.size())
-
     # Convert the style vector to a 3D-tensor
     style_tensor = style_tensor.unsqueeze(0)
     style_tensor = style_tensor.expand(text_tensor.size()[1], style_tensor.size()[1], style_tensor.size()[2])
