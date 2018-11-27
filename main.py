@@ -311,23 +311,24 @@ def generate(model, X_test, cfg):
 
     X_test = X_test.to(computing_device)
 
-    with torch.no_grad():
-        output = model(X_test[:,0:4,:])
-    print(output.shape)
-    print(output[:,0,:])
+    #Iterate through the testing array in batches of the batch size.
+    for batch_num in range(len(X_test), cfg['batch_size']):
 
-    softmax = softmax_with_temperature(output[:,0,:].cpu().numpy())
-    print(softmax)
+        #Compute the output of the model over the batch
+        with torch.no_grad():
+            output = model(X_test[:,batch_num:batch_num + cfg['batch_size'],:])
 
+        #Go through each review in the batch
+        for review in range(cfg['batch_size']):
 
-    print(np.sum(softmax))
-    print(np.argmax(softmax))
+            #Softmax the output of the review
+            softmax = softmax_with_temperature(output[:,review,:].cpu().numpy())
+            [softmax] = softmax.tolist()
 
+            #Generate character distribution
+            print(np.random.choice(list(alphabet), 2, p=softmax))
+        break
 
-    print(softmax.shape)
-    [softmax] = softmax.tolist()
-    print(softmax)
-    print(np.random.choice(list(alphabet),5,p=softmax))
 
 
 def softmax_with_temperature(output):
