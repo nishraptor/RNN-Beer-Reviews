@@ -39,7 +39,7 @@ def load_data(fname):
     return file
 
 
-def process_train_data(data, beer_styles):
+def process_train_data(data, beer_styles, computing_device):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
 
@@ -48,10 +48,14 @@ def process_train_data(data, beer_styles):
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
 
-    style_vector = np.array(style_vector)
+    style_tensor = torch.from_numpy(np.array(style_vector))
+    #style_vector = np.array(style_vector)
+
 
     #Numeric Values for the overall review score (Not one-hot encoded)
-    score_vector = data['review/overall'].values
+    score_tensor = torch.from_numpy(data['review/overall'].values)
+    #score_vector = data['review/overall'].values
+    print(score_tensor.shape())
 
 
     #Get review texts and pad them with <EOS> character '}'
@@ -61,14 +65,21 @@ def process_train_data(data, beer_styles):
 
     #One-hot encoding the review text
     text_arrays = [char2oh(review) for review in padded_text_list]
-    text_arrays = np.array(text_arrays)
+    text_tensor = torch.from_numpy(np.array(text_arrays))
+    print(text_tensor.shape())
+    #text_arrays = np.array(text_arrays)
 
     #Convert the style vector to a 3D-tensor
-    style_arrays = np.repeat(style_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
+    style_tensor = style_tensor.unsqueeze(0)
+    style_tensor = style_tensor.expand(text_tensor.shape()[1], style_tensor.shape()[1], style_tensor.shape()[2])
+    print(style_tensor.shape())
+    #style_arrays = np.repeat(style_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
 
     #Convert the score vector to a 3D-tensor
-    score_vector = score_vector.reshape(-1,1)
-    score_arrays = np.repeat(score_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
+
+
+    #score_vector = score_vector.reshape(-1,1)
+    #score_arrays = np.repeat(score_vector[:, np.newaxis, :], text_arrays.shape[1], axis=1)
 
     #Append the style arrays and the score arrays to text arrays
     review_arrays = np.append(text_arrays, style_arrays, axis=2)
