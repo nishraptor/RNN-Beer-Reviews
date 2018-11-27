@@ -313,9 +313,13 @@ def generate(model, X_test, cfg):
     with torch.no_grad():
         output = model(X_test[:,0:4,:])
     print(output.shape)
+    print(output[:,0,:])
 
-    softmax = softmax_with_temperature(output.numpy())
-    print(sum(softmax))
+    softmax = softmax_with_temperature(output.cpu().numpy())
+    print(np.sum(softmax))
+
+    softmax = softmax_with_temperature(output[:,0,:].cpu().numpy())
+    print(np.sum(softmax))
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
