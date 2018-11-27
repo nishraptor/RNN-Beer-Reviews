@@ -310,7 +310,7 @@ def generate(model, X_test, cfg):
     print(X_test[:,0:4,:].shape)
     X_test = X_test.to(computing_device)
 
-    with torch.no_grad:
+    with torch.no_grad():
         output = model(X_test[:,0:4,:])
     print(output.shape)
 
