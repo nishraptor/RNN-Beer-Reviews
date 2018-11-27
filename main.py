@@ -160,7 +160,7 @@ def pad_data(orig_data):
 
 
 
-    array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=1) for array in orig_data]
+    array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=0) for array in orig_data]
 
     return np.asarray(array_list)
 
