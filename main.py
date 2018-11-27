@@ -237,7 +237,7 @@ def train(model, data, val_index, cfg,computing_device):
 
             # Create the one-hot encoding of training data and labels
 
-            input, target = process_train_data(minibatch_df, beer_styles)
+            input, target = process_train_data(minibatch_df, beer_styles, computing_device)
 
             input, target = input.to(computing_device), target.to(computing_device)
 
