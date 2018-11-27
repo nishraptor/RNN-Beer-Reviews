@@ -57,7 +57,8 @@ def process_train_data(data, beer_styles, computing_device):
 
     # One-hot encoding the review text
     text_arrays = [char2oh('{' + str(text) + '}') for text in text_list]
-    text_tensor = torch.from_numpy(np.asarray(text_arrays)).to(computing_device)
+
+    text_tensor = torch.from_numpy(pad_data(text_arrays)).to(computing_device)
 
     print(text_tensor.size())
 
@@ -147,7 +148,7 @@ def get_beer_style(data):
 
 
 
-def pad_data(orig_data, computing_device):
+def pad_data(orig_data):
     # TODO: Since you will be training in batches and training sample of each batch may have reviews
     # of varying lengths, you will need to pad your data so that all samples have reviews of length
     # equal to the longest review in a batch. You will pad all the sequences with <EOS> character 
@@ -155,29 +156,26 @@ def pad_data(orig_data, computing_device):
 
     max_len = len(max(orig_data, key=len))
 
+    array_list = [array.append(np.tile(np.array(['}']), max_len - array.size[0])) for array in orig_data]
+
+    return np.asarray(array_list)
 
 
-
-
-
-
-
-
-    padded_data = []
+    #padded_data = []
 
     #Get length of largest string
-    max_len = len(max(orig_data, key=len))
+    #max_len = len(max(orig_data, key=len))
 
-    for text in orig_data:
+    #for text in orig_data:
 
         #Length difference between current string and longest string
-        diff = max_len - len(text)
+        #diff = max_len - len(text)
 
         #Generate padding of <EOS> chars of length diff
-        padding = '}' * diff
-        padded_data.append(text + padding)
+        #padding = '}' * diff
+        #padded_data.append(text + padding)
 
-    return padded_data
+    #return padded_data
 
 def train(model, data, val_index, cfg,computing_device):
     # TODO: Train the model!
