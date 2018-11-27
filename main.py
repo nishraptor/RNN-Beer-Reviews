@@ -137,9 +137,9 @@ def process_test_data(data, beer_styles):
     review_arrays = np.append(text_array, style_arrays, axis=2)
     review_arrays = np.append(review_arrays, score_arrays, axis=2)
 
-    train_array = np.swapaxes(review_arrays, 0, 1)
+    test_array = np.swapaxes(review_arrays, 0, 1)
 
-    return torch.from_numpy(train_array).float()
+    return torch.from_numpy(test_array).float()
 
 
 def get_beer_style(data):
@@ -308,6 +308,7 @@ def generate(model, X_test, cfg):
     # corresponding to each input row in test data.
     print(X_test.shape)
     print(X_test[:,0:4,:].shape)
+    X_test = X_test.to(computing_device)
     output = model(X_test[:,0:4,:])
     print(output.shape)
     
