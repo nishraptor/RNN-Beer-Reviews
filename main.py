@@ -324,7 +324,7 @@ def generate(model, X_test, cfg):
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
 
-    return np.exp(temperature)/np.sum(np.exp(temperature))
+    return np.exp(output/temperature)/np.sum(np.exp(output/temperature))
 
 
 
