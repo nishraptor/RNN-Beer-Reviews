@@ -72,20 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" selection-end-column="15" />
+            <state>
+              <caret column="8" selection-start-column="8" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -93,22 +81,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="331" lean-forward="true" selection-start-line="331" selection-end-line="331" />
+            <state relative-caret-position="976">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543350304232" expanded="true" signature="10500:10610" ph="..." />
-                <marker date="1543350304232" expanded="true" signature="10643:10648" ph="..." />
+                <marker date="1543354652531" expanded="true" signature="1051:1056" ph="..." />
+                <marker date="1543354652531" expanded="true" signature="3980:3986" ph="..." />
+                <marker date="1543354652531" expanded="true" signature="4232:4237" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -122,7 +102,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -151,20 +131,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="RNN-Beer-Reviews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RNN-Beer-Reviews" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -604,7 +571,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="0" y="0" width="3840" height="2092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.252349" />
@@ -649,7 +616,8 @@
     <MESSAGE value="Added code for validation set" />
     <MESSAGE value="Testing code for validation set" />
     <MESSAGE value="Testing code for the generation of the strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing code for the generation of the strings" />
+    <MESSAGE value="Optimizing process_train_data with torch.tensor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizing process_train_data with torch.tensor" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/configs.py">
@@ -661,11 +629,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -678,12 +643,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="331" lean-forward="true" selection-start-line="331" selection-end-line="331" />
+        <state relative-caret-position="976">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543350304232" expanded="true" signature="10500:10610" ph="..." />
-            <marker date="1543350304232" expanded="true" signature="10643:10648" ph="..." />
+            <marker date="1543354652531" expanded="true" signature="1051:1056" ph="..." />
+            <marker date="1543354652531" expanded="true" signature="3980:3986" ph="..." />
+            <marker date="1543354652531" expanded="true" signature="4232:4237" ph="..." />
           </folding>
         </state>
       </provider>
