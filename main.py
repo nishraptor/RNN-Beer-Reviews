@@ -47,10 +47,10 @@ def process_train_data(data, beer_styles, computing_device):
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
 
-    style_tensor = torch.from_numpy(np.array(style_vector))
+    style_tensor = torch.from_numpy(np.array(style_vector)).to(computing_device)
 
     # Numeric Values for the overall review score (Not one-hot encoded)
-    score_tensor = torch.from_numpy(data['review/overall'].values)
+    score_tensor = torch.from_numpy(data['review/overall'].values).to(computing_device)
 
     # Get review texts and pad them with <EOS> character '}'
     text_list = data['review/text'].values
@@ -62,12 +62,12 @@ def process_train_data(data, beer_styles, computing_device):
     text_tensor = torch.from_numpy(np.array(text_arrays)).to(computing_device)
 
     # Convert the style vector to a 3D-tensor
-    style_tensor = style_tensor.unsqueeze(0)
+    style_tensor = style_tensor.unsqueeze(0).to(computing_device)
     style_tensor = style_tensor.expand(text_tensor.size()[1], style_tensor.size()[1], style_tensor.size()[2]).to(
         computing_device)
 
     # Convert the score vector to a 3D-tensor
-    score_tensor = score_tensor.unsqueeze(0).permute(1, 0).unsqueeze(0)
+    score_tensor = score_tensor.unsqueeze(0).permute(1, 0).unsqueeze(0).to(computing_device)
     score_tensor = score_tensor.expand(text_tensor.size()[1], score_tensor.size()[1], score_tensor.size()[2]).to(
         computing_device)
 
