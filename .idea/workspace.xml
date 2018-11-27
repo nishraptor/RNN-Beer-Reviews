@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,14 +24,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="9101" />
+          <entry key="py" value="9127" />
           <entry key="txt" value="275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="275" />
-          <entry key="Python" value="9101" />
+          <entry key="Python" value="9127" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -100,14 +99,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="137" column="49" lean-forward="true" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
+            <state relative-caret-position="648">
+              <caret line="162" column="33" lean-forward="true" selection-start-line="162" selection-start-column="33" selection-end-line="162" selection-end-column="33" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543359984995" expanded="true" signature="1051:1056" ph="..." />
-                <marker date="1543359984995" expanded="true" signature="3335:3341" ph="..." />
-                <marker date="1543359984995" expanded="true" signature="3587:3592" ph="..." />
-                <marker date="1543359984995" expanded="true" signature="5124:5129" ph="..." />
+                <marker date="1543360229123" expanded="true" signature="1051:1056" ph="..." />
+                <marker date="1543360229123" expanded="true" signature="3335:3341" ph="..." />
+                <marker date="1543360229123" expanded="true" signature="3587:3592" ph="..." />
+                <marker date="1543360229123" expanded="true" signature="5124:5129" ph="..." />
               </folding>
             </state>
           </provider>
@@ -244,20 +243,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00027" summary="Testing code for validation set">
-      <created>1543300534661</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1543300534661</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Testing code for validation set">
-      <created>1543300806257</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1543300806257</updated>
     </task>
     <task id="LOCAL-00029" summary="Testing code for validation set">
       <created>1543300976558</created>
@@ -588,7 +573,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543359857811</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543359991784</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1543359991784</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Optimizing process_train_data with torch.tensor">
+      <created>1543360144315</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1543360144315</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -676,14 +675,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="137" column="49" lean-forward="true" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
+        <state relative-caret-position="648">
+          <caret line="162" column="33" lean-forward="true" selection-start-line="162" selection-start-column="33" selection-end-line="162" selection-end-column="33" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543359984995" expanded="true" signature="1051:1056" ph="..." />
-            <marker date="1543359984995" expanded="true" signature="3335:3341" ph="..." />
-            <marker date="1543359984995" expanded="true" signature="3587:3592" ph="..." />
-            <marker date="1543359984995" expanded="true" signature="5124:5129" ph="..." />
+            <marker date="1543360229123" expanded="true" signature="1051:1056" ph="..." />
+            <marker date="1543360229123" expanded="true" signature="3335:3341" ph="..." />
+            <marker date="1543360229123" expanded="true" signature="3587:3592" ph="..." />
+            <marker date="1543360229123" expanded="true" signature="5124:5129" ph="..." />
           </folding>
         </state>
       </provider>
