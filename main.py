@@ -155,7 +155,7 @@ def pad_data(orig_data):
     # representation in one hot encoding.
 
     max_len = len(max(orig_data, key=len))
-    print(orig_data.shape)
+    print(len(orig_data))
     print(orig_data[0].shape)
 
 
