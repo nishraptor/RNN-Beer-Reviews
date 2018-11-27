@@ -190,9 +190,23 @@ def train(model, data, val_index, cfg,computing_device):
 
     train_df, val_df = data[0:val_index], data[val_index:]
 
+    minibatch_size = cfg['batch_size']
+    num_batch = int(len(train_df.index) / minibatch_size)
+
     #Create the validation set
-    #val_input, val_target =  process_train_data(val_df,beer_styles)
-    #val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
+    val_inputs, val_targets = [], []
+    minibatch_size = cfg['batch_size']
+    num_val_batch = int(len(val_df.indez) / minibatch_size)
+
+    for minibatch_num in range(num_val_batch):
+        start_index = minibatch_num * minibatch_size
+        end_index = (minibatch_num + 1) * minibatch_size
+
+        minibatch_df = val_df[start_index:end_index]
+        val_input, val_target =  process_train_data(minibatch_df, beer_styles)
+        val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
+        val_inputs.append(val_input)
+        val_targets.append(val_target)
 
 
     #Training loss per epoch, in a list.
@@ -271,12 +285,17 @@ def train(model, data, val_index, cfg,computing_device):
             # Measure the loss on validation data
             if minibatch_num % 1000 == 0:
 
-                with torch.no_grad():
-                    val_output = model(val_input)
+                val_sum = 0
+                for i in range(len(val_inputs)):
 
-                val_output = val_output.permute(1,2,0)
-                loss = criterion(val_output, val_target)
-                minibatch_val_loss.append(loss)
+                    with torch.no_grad():
+                        val_output = model(val_inputs[i])
+
+                    val_output = val_output.permute(1,2,0)
+                    loss = criterion(val_output, val_targets[i])
+
+                val_sum += loss
+                minibatch_val_loss.append(val_sum)
 
                 model.init_hidden(computing_device)
 
