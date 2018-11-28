@@ -201,13 +201,17 @@ def train(model, data, val_index, cfg,computing_device):
     num_batch = int(len(train_df.index) / minibatch_size)
 
     #Training loss per epoch, in a list.
-    minibatch_train_loss = []
-    minibatch_val_loss = []
-    avg_mb_train_loss = []
+    epoch_minibatch_train_loss = []
+    epoch_minibatch_val_loss = []
+    epoch_avg_mb_train_loss = []
 
     #Iterate over cfg[epochs]
     for epoch in range(cfg['epochs']):
-        
+
+        minibatch_train_loss = []
+        minibatch_val_loss = []
+        avg_mb_train_loss = []
+
         #Iterate through minbatch (cfg[batch})
         minibatch_size = cfg['batch_size']
         num_batch = int(len(train_df.index) / minibatch_size)
@@ -273,11 +277,15 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
+
+
             break
 
-        #Run model on validation set
+        #Save loss
+        epoch_avg_mb_train_loss.append(avg_mb_train_loss)
+        epoch_minibatch_train_loss.append(minibatch_train_loss)
 
-        val_sum = 0
+        #Run model on validation set
 
         num_val_batch = int(len(val_df.index) / minibatch_size)
 
@@ -296,21 +304,23 @@ def train(model, data, val_index, cfg,computing_device):
             val_output = val_output.permute(1,2,0)
             loss = criterion(val_output, val_target)
 
-            val_sum += loss
+            minibatch_val_loss.append(loss)
 
             break
 
-        minibatch_val_loss.append(val_sum)
+        epoch_minibatch_val_loss.append(minibatch_val_loss)
 
         model.init_hidden(computing_device)
 
 
 
     print('avg mb train loss and minibatch val loss:')
-    print(avg_mb_train_loss)
-    print(minibatch_val_loss)
+    print(epoch_avg_mb_train_loss)
+    print(epoch_minibatch_val_loss)
 
     torch.save(model.state_dict(), 'bi_lstm.pth')
+
+    return (epoch_minibatch_train_loss, epoch_avg_mb_train_loss, epoch_minibatch_val_loss)
     
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
@@ -355,6 +365,21 @@ def generate(model, X_test, cfg):
 
 
 
+def loss_to_file(outputs, fname):
+
+    f = open(fname)
+
+    for i in range(len(outputs)):
+
+        for j in range(len(outputs[i])):
+
+            for k in range(len(outputs[i][j])):
+
+                f.write(str(outputs[i][j][k].value))
+                f.write(', ')
+
+            f.write('\n')
+
 
 
 def softmax_with_temperature(output):
@@ -375,6 +400,7 @@ if __name__ == "__main__":
     train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
     test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
     out_fname = "output.txt"
+    loss_out_fname = "loss_output.txt"
 
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
@@ -391,7 +417,8 @@ if __name__ == "__main__":
     model.to(computing_device)
 
     if cfg['train']:
-        train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+        loss = train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+        loss_to_file(loss, loss_out_fname)
     else:
         model.load_state_dict(torch.load('checkpoint.pth'))
         model.eval()
