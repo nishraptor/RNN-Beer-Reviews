@@ -317,7 +317,7 @@ def train(model, data, val_index, cfg,computing_device):
     print(epoch_avg_mb_train_loss)
     print(epoch_minibatch_val_loss)
 
-    torch.save(model.state_dict(), 'bi_lstm.pth')
+    torch.save(model.state_dict(), cfg['model_name'] +'.pth')
 
     return (epoch_minibatch_train_loss, epoch_avg_mb_train_loss, epoch_minibatch_val_loss)
     
@@ -392,7 +392,14 @@ def loss_to_file(outputs, fname):
 
             f.write('\n')
 
+def get_model(cfg):
 
+    if (cfg['model_name'] == 'baselineLSTM'):
+        return baselineLSTM(cfg)
+    elif (cfg['model_name'] == 'biLSTM'):
+        return biLSTM(cfg)
+    elif (cfg['model_name'] == 'GRU'):
+        return GRU(cfg)
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
@@ -411,8 +418,8 @@ if __name__ == "__main__":
 
     train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
     test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
-    out_fname = "output.txt"
-    loss_out_fname = "loss_output.txt"
+    out_fname = cfg['model_name'] + "output.txt"
+    loss_out_fname = cfg['model_name'] + "loss_output.txt"
 
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
@@ -421,7 +428,7 @@ if __name__ == "__main__":
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(test_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     
-    model = biLSTM(cfg) # Replace this with model = <your model name>(cfg)
+    model = get_model(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
         computing_device = torch.device("cuda")
     else:
@@ -432,7 +439,7 @@ if __name__ == "__main__":
         loss = train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
         loss_to_file(loss, loss_out_fname)
     else:
-        model.load_state_dict(torch.load('checkpoint.pth'))
+        model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
         outputs = generate(model, X_test, cfg) # Generate the outputs for test data
         save_to_file(outputs, out_fname) # Save the generated outputs to a file
