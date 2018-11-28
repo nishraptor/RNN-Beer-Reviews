@@ -188,7 +188,7 @@ def train(model, data, val_index, cfg,computing_device):
     criterion = nn.CrossEntropyLoss()
 
     #Define the optimizer
-    optimizer = torch.optim.Adam(model.parameters(), cfg['learning_rate'])
+    optimizer = torch.optim.Adam(model.parameters(), cfg['learning_rate'], weight_decay=cfg['L2_penalty'])
 
     #Get all beer style
     beer_styles = get_beer_style(data)
