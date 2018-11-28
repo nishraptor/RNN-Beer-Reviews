@@ -273,13 +273,14 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
+            break
+
         #Run model on validation set
 
         val_sum = 0
 
         num_val_batch = int(len(val_df.index) / minibatch_size)
-        print(num_val_batch)
-        print('hi')
+
         for val_minibatch_num in range(num_val_batch):
 
             start_index = val_minibatch_num * minibatch_size
@@ -297,6 +298,7 @@ def train(model, data, val_index, cfg,computing_device):
 
             val_sum += loss
 
+            break
 
         minibatch_val_loss.append(val_sum)
 
