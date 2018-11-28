@@ -373,7 +373,7 @@ def loss_to_file(outputs, fname):
 
         for j in range(len(outputs[i])):
 
-            f.write("Epoch num: ", j)
+            f.write("Epoch num: "+ str(j))
             f.write("\n")
 
             for k in range(len(outputs[i][j])):
