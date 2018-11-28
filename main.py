@@ -311,7 +311,7 @@ def train(model, data, val_index, cfg,computing_device):
     #Save model to model file
     torch.save(model.state_dict(), cfg['model_name'] +'.pth')
 
-    #Return loss values 
+    #Return loss values
     return (epoch_minibatch_train_loss, epoch_avg_mb_train_loss, epoch_minibatch_val_loss)
     
 def generate(model, X_test, cfg):
