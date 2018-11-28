@@ -65,7 +65,7 @@ class goodLSTM(nn.Module):
 
         self.init_hidden(computing_device)
 
-        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim, num_layers=self.layers)
+        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim // 2, num_layers=self.layers, bidirectional=True)
 
         self.fc = nn.Linear(self.hidden_dim, self.output_dim)
 
@@ -73,23 +73,50 @@ class goodLSTM(nn.Module):
     def init_hidden(self, computing_device):
 
         self.hidden = None
-        self.hidden = (torch.zeros(self.layers, self.batch_size, self.hidden_dim),
-                       torch.zeros(self.layers, self.batch_size, self.hidden_dim))
+        self.hidden = (torch.zeros(self.layers * 2, self.batch_size, self.hidden_dim // 2),
+                       torch.zeros(self.layers * 2, self.batch_size, self.hidden_dim // 2))
 
         self.hidden = [tensor.to(computing_device) for tensor in self.hidden]
 
     def forward(self, sequence):
 
         out, self.hidden = self.lstm(sequence, self.hidden)
-        #print(out.size())
 
         output = self.fc(out)
-        #print(type(out))
-        #print(type(output))
 
         return output
 
 
+class GRU(nn.Module):
+    def __init__(self, config):
+        super(GRU, self).__init__()
+
+        self.hidden_dim = config['hidden_dim']
+        self.input_dim = config['input_dim']
+        self.output_dim = config['output_dim']
+        self.batch_size = config['batch_size']
+        self.layers = config['layers']
+        self.hidden = None
+
+        if config['cuda']:
+            computing_device = torch.device("cuda")
+        else:
+            computing_device = torch.device("cpu")
+
+        self.init_hidden(computing_device)
+
+        self.lstm = nn.GRU(self.input_dim, self.hidden_dim, num_layers=self.layers)
+
+        self.fc = nn.Linear(self.hidden_dim, self.output_dim)
 
 
+    def init_hidden(self, computing_device):
 
+        self.hidden = None
+        self.hidden = torch.zeros(self.layers, self.batch_size, self.hidden_dim).to(computing_device)
+
+    def forward(self, sequence):
+        out, self.hidden = self.GRU(sequence, self.hidden)
+        out = self.fc(out)
+
+        return out
