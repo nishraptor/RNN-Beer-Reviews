@@ -277,9 +277,8 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
-
-
             break
+
 
         #Save loss
         epoch_avg_mb_train_loss.append(avg_mb_train_loss)
@@ -370,6 +369,16 @@ def loss_to_file(outputs, fname):
     f = open(fname, 'w')
 
     for i in range(len(outputs)):
+
+        if (i == 0):
+
+            f.write("Train loss per minibatch\n")
+        elif (i == 1):
+
+            f.write("Avg train loss per minibatch\n")
+        elif (i == 2):
+
+            f.write("Val loss per minibatch\n")
 
         for j in range(len(outputs[i])):
 

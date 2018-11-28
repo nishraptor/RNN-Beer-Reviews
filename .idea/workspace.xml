@@ -24,14 +24,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="10496" />
+          <entry key="py" value="10557" />
           <entry key="txt" value="384" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="384" />
-          <entry key="Python" value="10496" />
+          <entry key="Python" value="10557" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -104,12 +104,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="369" column="23" selection-start-line="369" selection-start-column="23" selection-end-line="369" selection-end-column="23" />
+            <state relative-caret-position="771">
+              <caret line="380" column="51" selection-start-line="380" selection-start-column="51" selection-end-line="380" selection-end-column="51" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543382529138" expanded="true" signature="11991:12257" ph="..." />
-                <marker date="1543382529138" expanded="true" signature="12294:12299" ph="..." />
+                <marker date="1543382860261" expanded="true" signature="11991:12329" ph="..." />
+                <marker date="1543382860261" expanded="true" signature="12366:12371" ph="..." />
               </folding>
             </state>
           </provider>
@@ -345,20 +345,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00062" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543357109160</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1543357109160</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543358036292</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1543358036292</updated>
     </task>
     <task id="LOCAL-00064" summary="Optimizing process_train_data with torch.tensor">
       <created>1543358134410</created>
@@ -689,7 +675,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543382531371</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Testing saving model on biLSTM">
+      <created>1543382669060</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1543382669060</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Testing saving model on biLSTM">
+      <created>1543382767885</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1543382767885</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -786,12 +786,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="369" column="23" selection-start-line="369" selection-start-column="23" selection-end-line="369" selection-end-column="23" />
+        <state relative-caret-position="771">
+          <caret line="380" column="51" selection-start-line="380" selection-start-column="51" selection-end-line="380" selection-end-column="51" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543382529138" expanded="true" signature="11991:12257" ph="..." />
-            <marker date="1543382529138" expanded="true" signature="12294:12299" ph="..." />
+            <marker date="1543382860261" expanded="true" signature="11991:12329" ph="..." />
+            <marker date="1543382860261" expanded="true" signature="12366:12371" ph="..." />
           </folding>
         </state>
       </provider>
