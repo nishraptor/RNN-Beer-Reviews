@@ -287,7 +287,7 @@ def train(model, data, val_index, cfg,computing_device):
             end_index = (val_minibatch_num + 1) * minibatch_size
 
             minibatch_df = val_df[start_index:end_index]
-            val_input, val_target = process_train_data(minibatch_df, beer_styles)
+            val_input, val_target = process_train_data(minibatch_df, beer_styles, computing_device)
             val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
 
             with torch.no_grad():
