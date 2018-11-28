@@ -58,7 +58,7 @@ def process_train_data(data, beer_styles, computing_device):
     # One-hot encoding the review text
     text_arrays = [char2oh('{' + str(text) + '}') for text in text_list]
 
-    text_tensor = torch.from_numpy(pad_data(text_arrays)).to(computing_device)
+    text_tensor = pad_data(text_arrays, computing_device)
 
     # Convert the style vector to a 3D-tensor
     style_tensor = style_tensor.unsqueeze(0)
@@ -146,17 +146,21 @@ def get_beer_style(data):
 
 
 
-def pad_data(orig_data):
+def pad_data(orig_data, computing_device):
     # TODO: Since you will be training in batches and training sample of each batch may have reviews
     # of varying lengths, you will need to pad your data so that all samples have reviews of length
     # equal to the longest review in a batch. You will pad all the sequences with <EOS> character 
     # representation in one hot encoding.
 
     max_len = len(max(orig_data, key=len))
+    eos_array = char2oh('}')
 
-    array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=0) for array in orig_data]
+    tensor_list = [torch.cat((torch.from_numpy(array).to(computing_device),
+                              torch.from_numpy(eos_array).expand(max_len - array.shape[0], eos_array.shape[1]).to(computing_device)), dim=1)
+                   for array in orig_data]
+    #array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=0) for array in orig_data]
 
-    return np.asarray(array_list)
+    return torch.stack(tensor_list).to(computing_device)
 
 
     #padded_data = []
