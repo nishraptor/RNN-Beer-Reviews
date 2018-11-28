@@ -72,20 +72,21 @@ def process_train_data(data, beer_styles, computing_device):
     text_tensor = text_tensor.permute(1, 0, 2)
     review_tensor = torch.cat((text_tensor, style_tensor, score_tensor.long()), dim=2)
 
+    #Swap axes of review tensor
     review_tensor = review_tensor.permute(1, 0, 2)
-    train_tensor = review_tensor[:, :-1, :]
 
-    # Remove the first character to get the label array
-    label_tensor = review_tensor[:, 1:, :84]
+    #Remove last character in the train tensor
+    train_tensor = review_tensor[:, :-1, :]
 
     # Swap the axes
     train_tensor = train_tensor.permute(1, 0, 2).float()
 
+    # Remove the first character to get the label array
+    label_tensor = review_tensor[:, 1:, :84]
+
     # Get the max index of the one-hot encoded vectors in labels
     # for use with CrossEntropyLoss, also typing requirement
-    # target = np.argmax(label_array, 2)
     target = label_tensor.argmax(dim=2).long()
-
 
     return train_tensor, target
 
@@ -155,29 +156,14 @@ def pad_data(orig_data, computing_device):
     max_len = len(max(orig_data, key=len))
     eos_array = char2oh('}')
 
+    #Get list of padded tensors of one-hot encodings
     tensor_list = [torch.cat((torch.from_numpy(array).to(computing_device),
                               torch.from_numpy(eos_array).to(computing_device).expand(max_len - array.shape[0], eos_array.shape[1])), dim=0)
                    for array in orig_data]
-    #array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=0) for array in orig_data]
 
+    #Return 3D tensor of one-hot encodings
     return torch.stack(tensor_list)
 
-
-    #padded_data = []
-
-    #Get length of largest string
-    #max_len = len(max(orig_data, key=len))
-
-    #for text in orig_data:
-
-        #Length difference between current string and longest string
-        #diff = max_len - len(text)
-
-        #Generate padding of <EOS> chars of length diff
-        #padding = '}' * diff
-        #padded_data.append(text + padding)
-
-    #return padded_data
 
 def train(model, data, val_index, cfg,computing_device):
     # TODO: Train the model!
@@ -277,8 +263,6 @@ def train(model, data, val_index, cfg,computing_device):
             #Print Loss
             print('Loss is %s for minibatch num %s out of total: %s'% (str(loss), str(minibatch_num),str(num_batch)))
 
-            break
-
 
         #Save loss
         epoch_avg_mb_train_loss.append(avg_mb_train_loss)
@@ -290,35 +274,44 @@ def train(model, data, val_index, cfg,computing_device):
 
         for val_minibatch_num in range(num_val_batch):
 
+            #Get indices of minibatch
             start_index = val_minibatch_num * minibatch_size
             end_index = (val_minibatch_num + 1) * minibatch_size
 
+            #Get the minibatch df
             minibatch_df = val_df[start_index:end_index]
+
+            #Get the input + target
             val_input, val_target = process_train_data(minibatch_df, beer_styles, computing_device)
             val_input, val_target = val_input.to(computing_device), val_target.to(computing_device)
 
+            #Don't save gradients to lower memory usage
             with torch.no_grad():
                 val_output = model(val_input)
 
+            #Preprocess to get the loss
             val_output = val_output.permute(1,2,0)
             loss = criterion(val_output, val_target)
 
+            #Save loss
             minibatch_val_loss.append(loss)
 
-            break
-
+        #Save loss for this epoch
         epoch_minibatch_val_loss.append(minibatch_val_loss)
 
+        #Reinit hidden states
         model.init_hidden(computing_device)
 
 
-
+    #Print total losses
     print('avg mb train loss and minibatch val loss:')
     print(epoch_avg_mb_train_loss)
     print(epoch_minibatch_val_loss)
 
+    #Save model to model file
     torch.save(model.state_dict(), cfg['model_name'] +'.pth')
 
+    #Return loss values 
     return (epoch_minibatch_train_loss, epoch_avg_mb_train_loss, epoch_minibatch_val_loss)
     
 def generate(model, X_test, cfg):
