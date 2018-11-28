@@ -378,7 +378,7 @@ def loss_to_file(outputs, fname):
 
             for k in range(len(outputs[i][j])):
 
-                f.write(str(outputs[i][j][k].data[0]))
+                f.write(str(outputs[i][j][k].item()))
                 f.write(', ')
 
             f.write('\n')
