@@ -156,7 +156,7 @@ def pad_data(orig_data, computing_device):
     eos_array = char2oh('}')
 
     tensor_list = [torch.cat((torch.from_numpy(array).to(computing_device),
-                              torch.from_numpy(eos_array).expand(max_len - array.shape[0], eos_array.shape[1]).to(computing_device)), dim=1)
+                              torch.from_numpy(eos_array).expand(max_len - array.shape[0], eos_array.shape[1]).to(computing_device)), dim=0)
                    for array in orig_data]
     #array_list = [np.append(array, np.repeat(char2oh('}'), max_len - array.shape[0], axis=0), axis=0) for array in orig_data]
 
