@@ -24,14 +24,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="10485" />
+          <entry key="py" value="10496" />
           <entry key="txt" value="384" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="384" />
-          <entry key="Python" value="10485" />
+          <entry key="Python" value="10496" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -104,12 +104,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1058">
-              <caret line="420" column="41" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
+            <state relative-caret-position="320">
+              <caret line="369" column="23" selection-start-line="369" selection-start-column="23" selection-end-line="369" selection-end-column="23" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <marker date="1543382289688" expanded="true" signature="11991:12253" ph="..." />
-                <marker date="1543382289688" expanded="true" signature="12290:12295" ph="..." />
+                <marker date="1543382529138" expanded="true" signature="11991:12257" ph="..." />
+                <marker date="1543382529138" expanded="true" signature="12294:12299" ph="..." />
               </folding>
             </state>
           </provider>
@@ -345,27 +345,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00059" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543356508142</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1543356508142</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543356592335</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1543356592335</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543356982759</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1543356982759</updated>
     </task>
     <task id="LOCAL-00062" summary="Optimizing process_train_data with torch.tensor">
       <created>1543357109160</created>
@@ -689,7 +668,28 @@
       <option name="project" value="LOCAL" />
       <updated>1543381640666</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Testing saving model on biLSTM">
+      <created>1543382292727</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1543382292727</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Testing saving model on biLSTM">
+      <created>1543382447128</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1543382447128</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Testing saving model on biLSTM">
+      <created>1543382531371</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1543382531371</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -786,12 +786,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="420" column="41" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="41" />
+        <state relative-caret-position="320">
+          <caret line="369" column="23" selection-start-line="369" selection-start-column="23" selection-end-line="369" selection-end-column="23" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <marker date="1543382289688" expanded="true" signature="11991:12253" ph="..." />
-            <marker date="1543382289688" expanded="true" signature="12290:12295" ph="..." />
+            <marker date="1543382529138" expanded="true" signature="11991:12257" ph="..." />
+            <marker date="1543382529138" expanded="true" signature="12294:12299" ph="..." />
           </folding>
         </state>
       </provider>
