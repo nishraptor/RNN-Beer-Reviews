@@ -324,6 +324,7 @@ def generate(model, X_test, cfg):
         #Compute the output of the model over the batch
         with torch.no_grad():
             output = model(X_test[:,batch_num:batch_num + cfg['batch_size'],:])
+            print(output.size())
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
@@ -340,7 +341,7 @@ def generate(model, X_test, cfg):
             print(sum(softmax))
 
             #Generate character distribution
-            print(np.random.choice(list(alphabet), 2, p=softmax))
+            print(np.random.choice(list(alphabet), 1, p=softmax))
         break
 
 
@@ -378,7 +379,7 @@ if __name__ == "__main__":
         computing_device = torch.device("cpu")
     model.to(computing_device)
     
-    train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+    #train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
     outputs = generate(model, X_test, cfg) # Generate the outputs for test data
     save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
