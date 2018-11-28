@@ -47,9 +47,9 @@ class baselineLSTM(nn.Module):
 
         return out
 
-class goodLSTM(nn.Module):
+class biLSTM(nn.Module):
     def __init__(self, config):
-        super(goodLSTM, self).__init__()
+        super(biLSTM, self).__init__()
 
         self.hidden_dim = config['hidden_dim']
         self.input_dim = config['input_dim']

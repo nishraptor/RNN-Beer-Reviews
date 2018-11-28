@@ -371,7 +371,7 @@ if __name__ == "__main__":
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(test_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     
-    model = goodLSTM(cfg) # Replace this with model = <your model name>(cfg)
+    model = biLSTM(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
         computing_device = torch.device("cuda")
     else:
