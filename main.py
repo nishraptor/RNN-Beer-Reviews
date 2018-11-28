@@ -367,7 +367,7 @@ def generate(model, X_test, cfg):
 
 def loss_to_file(outputs, fname):
 
-    f = open(fname)
+    f = open(fname, 'w')
 
     for i in range(len(outputs)):
 
