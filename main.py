@@ -308,7 +308,7 @@ def train(model, data, val_index, cfg,computing_device):
     print(avg_mb_train_loss)
     print(minibatch_val_loss)
 
-    torch.save(model.state_dict(), 'checkpoint.pth')
+    torch.save(model.state_dict(), 'bi_lstm.pth')
     
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
@@ -349,8 +349,9 @@ def generate(model, X_test, cfg):
                 #Append it to the character sampled
                 # go again until max length or escape char is hit.
 
-            break
-        break
+                pass
+
+
 
 
 
@@ -388,7 +389,7 @@ if __name__ == "__main__":
     model.to(computing_device)
 
     if cfg['train']:
-        #train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
+        train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
     else:
         model.load_state_dict(torch.load('checkpoint.pth'))
         model.eval()
