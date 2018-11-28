@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="updated saving and">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,14 +22,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="9974" />
-          <entry key="txt" value="330" />
+          <entry key="py" value="10006" />
+          <entry key="txt" value="384" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="330" />
-          <entry key="Python" value="9974" />
+          <entry key="PLAIN_TEXT" value="384" />
+          <entry key="Python" value="10006" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -95,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+            <state relative-caret-position="574">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -104,8 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1058">
-              <caret line="310" column="43" selection-start-line="310" selection-start-column="43" selection-end-line="310" selection-end-column="43" />
+            <state relative-caret-position="6511">
+              <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -129,9 +127,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/configs.py" />
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/configs.py" />
       </list>
     </option>
   </component>
@@ -151,20 +149,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="RNN-Beer-Reviews" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RNN-Beer-Reviews" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -356,27 +341,6 @@
       <option name="presentableId" value="Default" />
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
-    </task>
-    <task id="LOCAL-00054" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543355637207</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1543355637207</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543355709192</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1543355709192</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543356149182</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1543356149182</updated>
     </task>
     <task id="LOCAL-00057" summary="Optimizing process_train_data with torch.tensor">
       <created>1543356294179</created>
@@ -700,7 +664,28 @@
       <option name="project" value="LOCAL" />
       <updated>1543371621224</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Training model on biLSTM">
+      <created>1543381287885</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1543381287886</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Testing saving model on biLSTM">
+      <created>1543381348735</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1543381348735</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Testing saving model on biLSTM">
+      <created>1543381427632</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1543381427632</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -764,16 +749,11 @@
     <MESSAGE value="Optimizing process_train_data with torch.tensor" />
     <MESSAGE value="Testing new bidirectional LSTM" />
     <MESSAGE value="updated saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated saving" />
+    <MESSAGE value="Training model on biLSTM" />
+    <MESSAGE value="Testing saving model on biLSTM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing saving model on biLSTM" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/configs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1968">
@@ -793,10 +773,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="310" column="43" selection-start-line="310" selection-start-column="43" selection-end-line="310" selection-end-column="43" />
+        <state relative-caret-position="6511">
+          <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
