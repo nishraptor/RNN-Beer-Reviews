@@ -308,7 +308,7 @@ def train(model, data, val_index, cfg,computing_device):
     print(avg_mb_train_loss)
     print(minibatch_val_loss)
 
-    torch.save(model, 'checkpoint.pth')
+    torch.save(model.state_dict(), 'checkpoint.pth')
     
 def generate(model, X_test, cfg):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
@@ -343,6 +343,12 @@ def generate(model, X_test, cfg):
 
             #Generate character distribution
             print(np.random.choice(list(alphabet), 1, p=softmax))
+
+            for char in range(cfg['max_len']):
+                #Get the metadata information from this review
+                #Append it to the character sampled
+                # go again until max length or escape char is hit.
+
             break
         break
 
