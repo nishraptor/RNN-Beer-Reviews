@@ -347,6 +347,7 @@ def generate(model, X_test, cfg):
             #Generate character distribution
             print("Character choice:", np.random.choice(list(alphabet), 1, p=softmax))
 
+
             for char in range(cfg['max_len']):
                 print(X_test[:,batch_num:batch_num+cfg['batch_size'],:].size())
                 #Get the metadata information from this review
