@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="" />
+    <list default="true" id="5ab06a42-d993-4637-a7ea-81bc92648a33" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +65,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1791" />
+          <entry key="py" value="1793" />
           <entry key="txt" value="108" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="108" />
-          <entry key="Python" value="1791" />
+          <entry key="Python" value="1793" />
         </counts>
       </usages-collector>
     </session>
@@ -80,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="-128">
+              <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -102,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="545">
-              <caret line="353" column="57" selection-start-line="353" selection-start-column="57" selection-end-line="353" selection-end-column="57" />
+              <caret line="353" column="67" selection-start-line="353" selection-start-column="67" selection-end-line="353" selection-end-column="67" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -137,8 +139,8 @@
       <list>
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/models.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/configs.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -1007,20 +1009,6 @@
       <updated>1543004853284</updated>
       <workItem from="1543004854573" duration="11155000" />
     </task>
-    <task id="LOCAL-00075" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543359857811</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1543359857811</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Optimizing process_train_data with torch.tensor">
-      <created>1543359991784</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1543359991784</updated>
-    </task>
     <task id="LOCAL-00077" summary="Optimizing process_train_data with torch.tensor">
       <created>1543360144315</created>
       <option name="number" value="00077" />
@@ -1350,7 +1338,21 @@
       <option name="project" value="LOCAL" />
       <updated>1543533940571</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Testing generation">
+      <created>1543534205889</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1543534205890</updated>
+    </task>
+    <task id="LOCAL-00125" summary="Testing generation">
+      <created>1543534321033</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1543534321033</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1422,10 +1424,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="Testing generation" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="-128">
+          <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -1439,17 +1448,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
-          <caret line="353" column="57" selection-start-line="353" selection-start-column="57" selection-end-line="353" selection-end-column="57" />
+          <caret line="353" column="67" selection-start-line="353" selection-start-column="67" selection-end-line="353" selection-end-column="67" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

@@ -349,6 +349,7 @@ def generate(model, X_test, cfg):
             print(np.random.choice(list(alphabet), 1, p=softmax))
 
             for char in range(cfg['max_len']):
+                print(X_test[:,batch_num:batch_num + cfg['batch_size'],:].size())
                 #Get the metadata information from this review
                 #Append it to the character sampled
                 # go again until max length or escape char is hitkj.
