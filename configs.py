@@ -13,4 +13,4 @@ cfg['max_len'] = 1000# maximum character length of the generated reviews
 cfg['epochs'] =  2 # number of epochs for which the model is trained
 cfg['cuda'] = True #True or False depending whether you want to run your model on a GPU or not. If you set this to True, make sure to start a GPU pod on ieng6 server
 cfg['train'] = False# True or False; True denotes that the model is bein deployed in training mode, False means the model is not being used to generate reviews
-cfg['model_name'] = 'GRU'
+cfg['model_name'] = 'biLSTM'

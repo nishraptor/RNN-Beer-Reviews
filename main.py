@@ -434,7 +434,6 @@ if __name__ == "__main__":
         loss = train(model, shuffled_data, val_index, cfg, computing_device) # Train the model
         loss_to_file(loss, loss_out_fname)
     else:
-        model = get_model(cfg)
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
         outputs = generate(model, X_test, cfg) # Generate the outputs for test data
