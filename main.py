@@ -321,7 +321,7 @@ def generate(model, X_test, cfg):
     alphabet = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
 
     X_test = X_test.to(computing_device)
-    print("X_test;", X_test.shape)
+    print("X_test:", X_test.shape)
 
     #Iterate through the testing array in batches of the batch size.
     for batch_num in range(len(X_test), cfg['batch_size']):
