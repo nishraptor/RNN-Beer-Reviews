@@ -342,7 +342,7 @@ def generate(model, X_test, cfg):
             softmax = [x + (1 - sum(softmax))/len(softmax) for x in softmax]
 
             print(softmax)
-            print(len(softmax))
+            print(max(softmax))
             print(sum(softmax))
 
             #Generate character distribution
