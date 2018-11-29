@@ -351,7 +351,7 @@ def generate(model, X_test, cfg):
             for char in range(cfg['max_len']):
                 #Get the metadata information from this review
                 #Append it to the character sampled
-                # go again until max length or escape char is hit.
+                # go again until max length or escape char is hitk.
 
                 break
 
