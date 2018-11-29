@@ -84,7 +84,7 @@ class biLSTM(nn.Module):
 
         output = self.fc(out)
 
-        return output
+        return output,
 
 
 class GRU(nn.Module):
