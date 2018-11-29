@@ -353,10 +353,9 @@ def generate(model, X_test, cfg):
                 #Append it to the character sampled
                 # go again until max length or escape char is hit.
 
-            break
+                break
 
         break
-    break
 
 
 
