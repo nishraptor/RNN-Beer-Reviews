@@ -345,11 +345,17 @@ def generate(model, X_test, cfg):
             print("Sum softmax:", sum(softmax))
 
             #Generate character distribution
-            print("Character choice:", np.random.choice(list(alphabet), 1, p=softmax))
+            [gen_char] = np.random.choice(list(alphabet), 1, p=softmax)
+            print("Character choice:",gen_char)
 
             for char in range(cfg['max_len']):
-                print(X_test[:,batch_num:batch_num+cfg['batch_size'],:].size())
+                print(X_test[:,batch_num:batch_num+review,:].size())
                 #Get the metadata information from this review
+                meta_data = X_test[:,batch_num:batch_num+review,84:]
+                
+
+
+
                 #Append it to the character sampled
                 # go again until max length or escape char is hitkj.
 
