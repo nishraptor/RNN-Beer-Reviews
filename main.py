@@ -321,7 +321,7 @@ def generate(model, X_test, cfg):
     alphabet = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
 
     X_test = X_test.to(computing_device)
-    print(X_test.shape)
+    print("X_test;", X_test.shape)
 
     #Iterate through the testing array in batches of the batch size.
     for batch_num in range(len(X_test), cfg['batch_size']):
@@ -329,7 +329,7 @@ def generate(model, X_test, cfg):
         #Compute the output of the model over the batch
         with torch.no_grad():
             output = model(X_test[:,batch_num:batch_num + cfg['batch_size'],:])
-            print(output.size())
+            print("Model size:", output.size())
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
@@ -341,14 +341,14 @@ def generate(model, X_test, cfg):
             #Prevent floating point errors:
             softmax = [x + (1 - sum(softmax))/len(softmax) for x in softmax]
 
-            print(softmax)
-            print(max(softmax))
-            print(sum(softmax))
+            print("Max softmax:", max(softmax))
+            print("Sum softmax:", sum(softmax))
 
             #Generate character distribution
-            print(np.random.choice(list(alphabet), 1, p=softmax))
+            print("Character choice:", np.random.choice(list(alphabet), 1, p=softmax))
 
             for char in range(cfg['max_len']):
+                print(X_test[:,batch_num:batch_num+cfg['batch_size'],:].size())
                 #Get the metadata information from this review
                 #Append it to the character sampled
                 # go again until max length or escape char is hitkj.
