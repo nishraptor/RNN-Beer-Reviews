@@ -349,10 +349,10 @@ def generate(model, X_test, cfg):
             print("Character choice:",gen_char)
 
             for char in range(cfg['max_len']):
-                print(X_test[:,batch_num:batch_num+review,:].size())
+                print(X_test[:,batch_num:batch_num+cfg['batch_size'],:].size())
                 #Get the metadata information from this review
                 meta_data = X_test[:,batch_num:batch_num+review,84:]
-                
+
 
 
 
