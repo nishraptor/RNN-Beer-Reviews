@@ -328,7 +328,9 @@ def generate(model, X_test, cfg):
 
         #Compute the output of the model over the batch
         with torch.no_grad():
-            output = model(X_test[:,batch_num:batch_num + cfg['batch_size'],:])
+            start = batch_num * cfg['batch_size']
+            end = (batch_num + 1) * cfg['batch_size']
+            output = model(X_test[:,start:end,:])
             print("Model size:", output.size())
 
         #Go through each review in the batch
@@ -350,7 +352,7 @@ def generate(model, X_test, cfg):
 
             for char in range(cfg['max_len']):
                 print("Review:", review)
-                print(X_test[:,batch_num:batch_num+cfg['batch_size'],:].size())
+                print(X_test[:,batch_num:start,start+review:].size())
                 #Get the metadata information from this review
                 meta_data = X_test[:,batch_num:batch_num+cfg['batch_size'],84:]
 
