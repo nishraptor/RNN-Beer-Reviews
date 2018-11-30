@@ -335,12 +335,16 @@ def generate(model, X_test, cfg, computing_device):
 
 
         softmax = softmax_with_temperature(output.cpu().numpy())
+        softmax2 = old_softmax(output[:, 3, :].cpu().numpy())
+        print("Softmax:", softmax)
+        print("Softmax type:",type(softmax))
+        print("Softmax shape:", softmax.shape)
 
+        print("Softmax 2: ", softmax2)
+        print("Softmax shape:", softmax.shape)
 
-        gen_chars = [np.random.choice(list(alphabet) ,1, p=softmax[:,dist,:]) for dist in softmax.shape[1]]
-        print(gen_chars)
-
-        break
+        gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:]) for dist in range(softmax.shape[1])]
+        print("Gen chars: ", gen_chars)
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
