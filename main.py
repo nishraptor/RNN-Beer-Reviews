@@ -372,7 +372,7 @@ def generate(model, X_test, cfg, computing_device):
 
                 break
 
-        break
+
 
 
 
