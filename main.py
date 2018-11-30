@@ -333,6 +333,9 @@ def generate(model, X_test, cfg, computing_device):
             output = model(X_test[:,start:end,:])
             print("Model size:", output.size())
 
+
+
+
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
 
@@ -349,16 +352,13 @@ def generate(model, X_test, cfg, computing_device):
             #Generate character distribution
             [gen_char] = np.random.choice(list(alphabet), 1, p=softmax)
             print("Character choice:", gen_char)
-            print("gen_char type:", type(gen_char))
 
             for char in range(cfg['max_len']):
-                print("Review:", review)
                 print(X_test[:,start+review-1:start+review,84:].size())
                 #Get the metadata information from this review
                 meta_data = X_test[:,start+review-1:start+review,84:]
                 char_tensor = torch.from_numpy(char2oh(str(gen_char)))
-                print("Char tensor: ", char_tensor)
-
+                next_char = torch.cat(char_tensor, meta_data, dim=2)
 
 
 
