@@ -334,6 +334,9 @@ def generate(model, X_test, cfg, computing_device):
             print("Model size:", output.size())
 
 
+        softmax = softmax_with_temperature(output.cpu().numpy())
+
+        print(softmax)
 
 
         #Go through each review in the batch
@@ -358,7 +361,7 @@ def generate(model, X_test, cfg, computing_device):
                 #Get the metadata information from this review
                 meta_data = X_test[:,start+review-1:start+review,84:]
                 char_tensor = torch.from_numpy(char2oh(str(gen_char)))
-                next_char = torch.cat(char_tensor, meta_data, dim=2)
+                next_char = torch.cat((char_tensor, meta_data), dim=2)
 
 
 
@@ -411,7 +414,7 @@ def get_model(cfg):
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
 
-    return np.exp(output/temperature)/np.sum(np.exp(output/temperature))
+    return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)
 
 def save_to_file(outputs, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
