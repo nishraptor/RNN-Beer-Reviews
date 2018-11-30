@@ -335,12 +335,15 @@ def generate(model, X_test, cfg, computing_device):
 
 
         softmax = softmax_with_temperature(output.cpu().numpy())
-
+        softmax2 = old_softmax(output[:, review, :].cpu().numpy())
         print("Softmax:", softmax)
         print("Softmax type:",type(softmax))
         print("Softmax shape:", softmax.shape)
 
-        break
+        print("Softmax 2: ", softmax2)
+        print("Softmax shape:", softmax.shape)
+
+
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
@@ -413,6 +416,11 @@ def get_model(cfg):
         return biLSTM(cfg)
     elif (cfg['model_name'] == 'GRU'):
         return GRU(cfg)
+
+def old_softmax(output):
+    temperature = cfg['gen_temp']
+
+    return np.exp(output/temperature)/np.sum(np.exp(output/temperature))
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
