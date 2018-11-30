@@ -344,7 +344,6 @@ def generate(model, X_test, cfg, computing_device):
 
         for char in range(cfg['max_len']):
 
-
             #Get meta data
             meta_data = X_test[:,start:end,84:]
             char_tensor_list = [torch.from_numpy(char2oh(char)) for char in gen_chars]
