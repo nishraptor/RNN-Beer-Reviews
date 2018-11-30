@@ -174,7 +174,7 @@ def train(model, data, val_index, cfg,computing_device):
     criterion = nn.CrossEntropyLoss()
 
     #Define the optimizer
-    optimizer = torch.optim.Adam(model.parameters(), cfg['learning_rate'], weight_decay=cfg['L2_penalty'])
+    optimizer = torch.optim.Adam(model.parameters(), cfg['learning_rate'])
 
     #Get all beer style
     beer_styles = get_beer_style(data)
@@ -348,7 +348,6 @@ def generate(model, X_test, cfg, computing_device):
             meta_data = X_test[:,start:end,84:]
             char_tensor_list = [torch.from_numpy(char2oh(c)) for c in gen_chars]
             input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.cpu().long()), dim=2)
-
 
             with torch.no_grad():
                 output = model(input.float().to(computing_device))
