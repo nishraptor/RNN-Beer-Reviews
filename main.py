@@ -314,7 +314,7 @@ def train(model, data, val_index, cfg,computing_device):
     #Return loss values
     return (epoch_minibatch_train_loss, epoch_avg_mb_train_loss, epoch_minibatch_val_loss)
     
-def generate(model, X_test, cfg):
+def generate(model, X_test, cfg, computing_device):
     # TODO: Given n rows in test data, generate a list of n strings, where each string is the review
     # corresponding to each input row in test data.
 
@@ -347,7 +347,7 @@ def generate(model, X_test, cfg):
             print("Sum softmax:", sum(softmax))
 
             #Generate character distribution
-            gen_char = np.random.choice(list(alphabet), 1, p=softmax)
+            [gen_char] = np.random.choice(list(alphabet), 1, p=softmax)
             print("Character choice:", gen_char)
             print("gen_char type:", type(gen_char))
 
@@ -446,6 +446,6 @@ if __name__ == "__main__":
     else:
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
-        outputs = generate(model, X_test, cfg) # Generate the outputs for test data
+        outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
         save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
