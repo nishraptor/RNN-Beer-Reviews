@@ -335,7 +335,7 @@ def generate(model, X_test, cfg, computing_device):
 
 
         softmax = softmax_with_temperature(output.cpu().numpy())
-        softmax2 = old_softmax(output[:, review, :].cpu().numpy())
+        softmax2 = old_softmax(output[:, 0, :].cpu().numpy())
         print("Softmax:", softmax)
         print("Softmax type:",type(softmax))
         print("Softmax shape:", softmax.shape)
