@@ -352,7 +352,7 @@ def generate(model, X_test, cfg, computing_device):
             print(input.long().to(computing_device).type())
 
             with torch.no_grad():
-                output = model(input)
+                output = model(input.float())
 
             softmax = softmax_with_temperature(output.cpu().numpy())
             gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].flatten()) for dist in
