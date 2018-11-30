@@ -424,9 +424,6 @@ def old_softmax(output):
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
-    print("Output:", output)
-
-
     return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,:,np.newaxis]
 
 def save_to_file(outputs, fname):
