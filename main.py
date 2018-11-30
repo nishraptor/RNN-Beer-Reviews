@@ -342,6 +342,7 @@ def generate(model, X_test, cfg, computing_device):
 
         print("Softmax 2: ", softmax2)
         print("Softmax shape:", softmax.shape)
+        [softmax] = softmax.tolist()
 
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:]) for dist in range(softmax.shape[1])]
         print("Gen chars: ", gen_chars)
