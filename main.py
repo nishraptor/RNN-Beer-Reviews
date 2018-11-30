@@ -336,6 +336,7 @@ def generate(model, X_test, cfg, computing_device):
 
         softmax = softmax_with_temperature(output.cpu().numpy())
 
+        print("Softmax:", softmax)
         print("Softmax type:",type(softmax))
         print("Softmax shape:", softmax.shape)
 
@@ -415,6 +416,8 @@ def get_model(cfg):
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
+    print("Output:", output)
+
 
     return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,:,np.newaxis]
 
