@@ -348,8 +348,8 @@ def generate(model, X_test, cfg, computing_device):
             meta_data = X_test[:,start:end,84:]
             char_tensor_list = [torch.from_numpy(char2oh(c)) for c in gen_chars]
             input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.cpu().long()), dim=2)
-            print(type(input))
-            print(type(input.float()))
+            print(input.type())
+            print(input.long().to(computing_device).type())
 
             with torch.no_grad():
                 output = model(input)
