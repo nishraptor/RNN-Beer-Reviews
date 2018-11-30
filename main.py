@@ -336,8 +336,10 @@ def generate(model, X_test, cfg, computing_device):
 
         softmax = softmax_with_temperature(output.cpu().numpy())
 
-        print(softmax)
+        print("Softmax type:",type(softmax))
+        print("Softmax shape:", softmax.shape)
 
+        break
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
