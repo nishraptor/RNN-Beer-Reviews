@@ -335,16 +335,25 @@ def generate(model, X_test, cfg, computing_device):
 
 
         softmax = softmax_with_temperature(output.cpu().numpy())
-        softmax2 = old_softmax(output[:, 3, :].cpu().numpy())
-        print("Softmax:", softmax)
         print("Softmax type:",type(softmax))
         print("Softmax shape:", softmax.shape)
 
-        print("Softmax 2: ", softmax2)
-        print("Softmax shape:", softmax.shape)
 
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
         print("Gen chars: ", gen_chars)
+
+        for char in range(cfg['max_len']):
+
+            #Get meta data
+            meta_data = X_test[:,start:end,84:]
+            char_tensor_list = [torch.from_numpy(char2oh(char)) for char in gen_chars]
+            input = torch.cat((torch.stack(char_tensor_list, meta_data)), dim=2)
+            print(input)
+
+            break
+
+
+        break
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
