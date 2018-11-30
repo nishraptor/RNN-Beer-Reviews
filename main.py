@@ -416,7 +416,7 @@ def get_model(cfg):
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
 
-    return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,None]
+    return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,:,np.newaxis]
 
 def save_to_file(outputs, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
