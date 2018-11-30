@@ -356,6 +356,8 @@ def generate(model, X_test, cfg, computing_device):
                 print(X_test[:,start+review-1:start+review,84:].size())
                 #Get the metadata information from this review
                 meta_data = X_test[:,start+review-1:start+review,84:]
+                char_tensor = torch.from_numpy(char2oh(str(gen_char)))
+                print("Char tensor: ", char_tensor)
 
 
 
