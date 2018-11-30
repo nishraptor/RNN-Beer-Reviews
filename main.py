@@ -347,14 +347,15 @@ def generate(model, X_test, cfg):
             print("Sum softmax:", sum(softmax))
 
             #Generate character distribution
-            [gen_char] = np.random.choice(list(alphabet), 1, p=softmax)
-            print("Character choice:",gen_char)
+            gen_char = np.random.choice(list(alphabet), 1, p=softmax)
+            print("Character choice:", gen_char)
+            print("gen_char type:", type(gen_char))
 
             for char in range(cfg['max_len']):
                 print("Review:", review)
                 print(X_test[:,start+review-1:start+review,84:].size())
                 #Get the metadata information from this review
-                meta_data = X_test[:,batch_num:batch_num+cfg['batch_size'],84:]
+                meta_data = X_test[:,start+review-1:start+review,84:]
 
 
 
