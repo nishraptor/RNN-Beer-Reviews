@@ -364,10 +364,10 @@ def generate(model, X_test, cfg, computing_device):
             #print(type(gen_chars))
             #print((gen_chars[0]))
             strings = [a + b[0] for a, b in zip(strings, gen_chars)]
-            print(strings)
 
             if char == 100:
-                break
+            #    break
+        print(strings)
 
         break
 
