@@ -222,7 +222,7 @@ def train(model, data, val_index, cfg,computing_device):
 
             input, target = process_train_data(minibatch_df, beer_styles, computing_device)
             print(input.size())
-            print(input)
+            print(input[0:2,:,:])
             exit()
 
             input, target = input.to(computing_device), target.to(computing_device)
@@ -459,6 +459,8 @@ def save_to_file(outputs, fname):
 if __name__ == "__main__":
     pd.set_option('display.expand_frame_repr', False)
     np.set_printoptions(threshold=np.nan)
+    torch.set_printoptions(threshold=1000)
+
     train_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
     test_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
     train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
