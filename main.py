@@ -459,8 +459,8 @@ if __name__ == "__main__":
     np.set_printoptions(threshold=np.nan)
     train_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
     test_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
-    train_data_fname = "Beeradvocate_Train.csv"
-    test_data_fname = "Beeradvocate_Test.csv"
+    train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
+    test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
     out_fname = cfg['model_name'] + "output.txt"
     loss_out_fname = cfg['model_name'] + "loss_output.txt"
 
