@@ -103,7 +103,6 @@ def process_test_data(data, beer_styles):
     # TODO: Takes in pandas DataFrame and returns a numpy array (or a torch Tensor/ Variable)
     # that has all input features. Note that test data does not contain any review so you don't
     # have to worry about one hot encoding the data.
-    print('DATA!',data)
     # one hot encoded vector
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
@@ -180,6 +179,8 @@ def train(model, data, val_index, cfg,computing_device):
     data_s = data.iloc[0:2]
 
     val_df, train_df = data_s[0:1], data_s[1:]
+    print('Val df',val_df)
+    print('Train_df',train_df)
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
