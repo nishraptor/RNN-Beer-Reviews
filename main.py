@@ -224,6 +224,7 @@ def train(model, data, val_index, cfg,computing_device):
             print(input.size())
             print(input[-1,:,:])
             print(target.size())
+            print(target)
             exit()
 
             input, target = input.to(computing_device), target.to(computing_device)
