@@ -183,7 +183,7 @@ def train(model, data, val_index, cfg,computing_device):
 
     data_s = data.iloc[0:2]
 
-    val_df, train_df = data_s[0:val_index], data_s[val_index:]
+    val_df, train_df = data_s[0:1], data_s[1:]
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
