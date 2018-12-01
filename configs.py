@@ -1,8 +1,8 @@
 cfg = {}
 cfg['input_dim'] = 189 # input dimension to LSTM
-cfg['hidden_dim'] = 189 # hidden dimension for LSTM
+cfg['hidden_dim'] = 84 # hidden dimension for LSTM
 cfg['output_dim'] = 84 # output dimension of the model
-cfg['layers'] = 1 # number of layers of LSTM
+cfg['layers'] = 2 # number of layers of LSTM
 cfg['dropout'] = 1 # dropout rte between two layers of LSTM; useful only when layers > 1; between 0 and 1
 cfg['bidirectional'] = False# True or False; True means using a bidirectional LSTM
 cfg['batch_size'] = 1 # batch size of inputg
@@ -13,4 +13,4 @@ cfg['max_len'] = 1000# maximum character length of the generated reviews
 cfg['epochs'] =  1000# number of epochs for which the model is trained
 cfg['cuda'] = True #True or False depending whether you want to run your model on a GPU or not. If you set this to True, make sure to start a GPU pod on ieng6 server
 cfg['train'] = True# True or False; True denotes that the model is bein deployed in training mode, False means the model is not being used to generate reviews
-cfg['model_name'] = 'baselineLSTM'
+cfg['model_name'] = 'GRU'
