@@ -342,7 +342,7 @@ def generate(model, X_test, cfg, computing_device):
         softmax = softmax_with_temperature(output.cpu().numpy())
         print("Softmax type:",type(softmax))
         print("Softmax shape:", softmax.shape)
-        print("Softmax:", softmax.max())
+        print("Softmax:", softmax.argmax())
 
 
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
@@ -362,7 +362,7 @@ def generate(model, X_test, cfg, computing_device):
             gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].flatten()) for dist in
                          range(softmax.shape[1])]
 
-            print("Softmax:", softmax.max())
+            print("Softmax:", softmax.argmax())
             print("Gen char:", gen_chars)
 
 
