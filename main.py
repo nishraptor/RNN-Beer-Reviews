@@ -178,7 +178,7 @@ def train(model, data, val_index, cfg,computing_device):
 
     data_s = data.iloc[0:2]
 
-    val_df, train_df = data_s[0:1], data_s[1:]
+    val_df, train_df = data_s[1:], data_s[0:1]
     print('Val df',val_df)
     print('Train_df',train_df)
     exit()
