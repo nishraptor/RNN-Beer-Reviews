@@ -1,6 +1,6 @@
 cfg = {}
 cfg['input_dim'] = 189 # input dimension to LSTM
-cfg['hidden_dim'] = 84 # hidden dimension for LSTM
+cfg['hidden_dim'] = 189 # hidden dimension for LSTM
 cfg['output_dim'] = 84 # output dimension of the model
 cfg['layers'] = 1 # number of layers of LSTM
 cfg['dropout'] = 1 # dropout rte between two layers of LSTM; useful only when layers > 1; between 0 and 1
