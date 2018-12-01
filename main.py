@@ -468,7 +468,7 @@ if __name__ == "__main__":
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
-    X_test = process_test_data(test_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
+    X_test = process_test_data(shuffled_data[0:1], get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     
     model = get_model(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
@@ -483,6 +483,6 @@ if __name__ == "__main__":
     else:
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
-        outputs = generate(model, shuffled_data[1:], cfg, computing_device) # Generate the outputs for test data
+        outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
         save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
