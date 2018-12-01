@@ -361,7 +361,7 @@ def generate(model, X_test, cfg, computing_device):
 
             print("Gen char:", gen_chars)
             print(type(gen_chars))
-            print(([gen_chars]))
+            print((gen_chars[0]))
 
             if char == 10:
                 break
