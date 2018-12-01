@@ -475,7 +475,7 @@ if __name__ == "__main__":
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(shuffled_data[0:1], get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
 
-    print(shuffled_data)
+    print(shuffled_data.iloc[0])
     
     model = get_model(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
