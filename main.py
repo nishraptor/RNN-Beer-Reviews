@@ -14,12 +14,6 @@ from nltk.translate import bleu_score
 # Functions we needed to implement to one-hot encode the vectors
 def char2oh(str):
     alphabet  = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
-    for i in range(len(str)):
-        if str[i] not in alphabet:
-            s = list(str)
-            s[i] = '@'
-            str = "".join(s)
-
     vector = [[0 if char != letter else 1 for char in alphabet]
               for letter in str]
     return np.array(vector)
@@ -324,7 +318,6 @@ def generate(model, X_test, cfg, computing_device):
     alphabet = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
 
     X_test = X_test.to(computing_device)
-    print("X_test:", X_test.shape)
 
     num_batches =int(X_test.size()[1] / cfg['batch_size'])
 
