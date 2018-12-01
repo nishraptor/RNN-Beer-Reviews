@@ -14,6 +14,8 @@ from nltk.translate import bleu_score
 # Functions we needed to implement to one-hot encode the vectors
 def char2oh(str):
     alphabet  = """abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&-\",:$%!();.[]?+/'{}@ """
+
+
     vector = [[0 if char != letter else 1 for char in alphabet]
               for letter in str]
     return np.array(vector)
