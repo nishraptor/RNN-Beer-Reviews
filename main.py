@@ -365,7 +365,7 @@ def generate(model, X_test, cfg, computing_device):
             #print((gen_chars[0]))
             strings = [a + b[0] for a, b in zip(strings, gen_chars)]
 
-            if char == 100:
+            #if char == 100:
             #    break
         print(strings)
 
