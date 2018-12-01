@@ -335,7 +335,7 @@ def generate(model, X_test, cfg, computing_device):
         with torch.no_grad():
             start = batch_num * cfg['batch_size']
             end = (batch_num + 1) * cfg['batch_size']
-            print(X_test[:,stard:end,:])
+            print(X_test[:,start:end,:])
             output = model(X_test[:,start:end,:])
             print("Model size:", output.size())
 
