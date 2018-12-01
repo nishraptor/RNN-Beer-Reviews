@@ -483,6 +483,6 @@ if __name__ == "__main__":
     else:
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
-        outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
+        outputs = generate(model, shuffled_data[1:], cfg, computing_device) # Generate the outputs for test data
         save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
