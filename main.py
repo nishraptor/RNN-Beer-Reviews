@@ -362,6 +362,8 @@ def generate(model, X_test, cfg, computing_device):
                          range(softmax.shape[1])]
 
             print("Gen char:", gen_chars)
+            print(type(gen_chars))
+            print(type([gen_chars]))
 
             if char == 10:
                 break
