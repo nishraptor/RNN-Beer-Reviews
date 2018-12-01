@@ -461,7 +461,7 @@ if __name__ == "__main__":
     loss_out_fname = cfg['model_name'] + "loss_output.txt"
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
-    train_data = train_data.iloc[0]
+    train_data = train_data.iloc[0:2]
 
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
