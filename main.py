@@ -343,7 +343,6 @@ def generate(model, X_test, cfg, computing_device):
 
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
         print("Gen chars: ", gen_chars)
-        print(gen_chars[0])
 
         for char in range(cfg['max_len']):
 
@@ -351,6 +350,8 @@ def generate(model, X_test, cfg, computing_device):
             meta_data = X_test[:,start:end,84:]
             char_tensor_list = [torch.from_numpy(char2oh(c)) for c in gen_chars]
             input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.cpu().long()), dim=2)
+
+            print(input)
 
             with torch.no_grad():
                 output = model(input.float().to(computing_device))
@@ -361,10 +362,13 @@ def generate(model, X_test, cfg, computing_device):
                          range(softmax.shape[1])]
 
             print("Gen char:", gen_chars)
+            print(type(gen_chars))
+            print(([gen_chars]))
 
-            if batch_num == 2:
-
+            if char == 10:
                 break
+
+        break
 
         #Go through each review in the batch
         for review in range(cfg['batch_size']):
