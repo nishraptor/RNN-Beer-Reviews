@@ -435,7 +435,11 @@ if __name__ == "__main__":
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
 
+    print("Loading train data...")
+
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
+
+    print("Loading test data...")
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
     X_test = process_test_data(shuffled_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
