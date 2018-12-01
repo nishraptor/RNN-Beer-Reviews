@@ -360,13 +360,13 @@ def generate(model, X_test, cfg, computing_device):
             gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].flatten()) for dist in
                          range(softmax.shape[1])]
 
-            print("Gen char:", gen_chars)
-            print(type(gen_chars))
-            print((gen_chars[0]))
+            #print("Gen char:", gen_chars)
+            #print(type(gen_chars))
+            #print((gen_chars[0]))
             strings = [a + b[0] for a, b in zip(strings, gen_chars)]
             print(strings)
 
-            if char == 10:
+            if char == 100:
                 break
 
         break
