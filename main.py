@@ -364,7 +364,9 @@ def generate(model, X_test, cfg, computing_device):
 
             print("Softmax:", softmax.argmax())
             print("Gen char:", gen_chars)
-
+            
+            if char == 10:
+                break
 
         break
 
