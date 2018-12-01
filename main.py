@@ -177,12 +177,8 @@ def train(model, data, val_index, cfg,computing_device):
     beer_styles = get_beer_style(data)
 
     #Create the seperate dataloaders for Train and Validation
+    val_df, train_df = data[:val_index], data[val_index:]
 
-    data_s = data.iloc[0:2]
-
-    val_df, train_df = data_s[1:], data_s[0:1]
-    print('Val df',val_df)
-    print('Train_df',train_df)
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
@@ -369,41 +365,6 @@ def generate(model, X_test, cfg, computing_device):
             #    break
         print(strings)
 
-        break
-
-        #Go through each review in the batch
-        for review in range(cfg['batch_size']):
-
-            #Softmax the output of the review
-            softmax = softmax_with_temperature(output[:,review,:].cpu().numpy())
-            [softmax] = softmax.tolist()
-
-            #Prevent floating point errors:
-            softmax = [x + (1 - sum(softmax))/len(softmax) for x in softmax]
-
-            print("Max softmax:", max(softmax))
-            print("Sum softmax:", sum(softmax))
-
-            #Generate character distribution
-            [gen_char] = np.random.choice(list(alphabet), 1, p=softmax)
-            print("Character choice:", gen_char)
-
-            for char in range(cfg['max_len']):
-                print(X_test[:,start+review-1:start+review,84:].size())
-                #Get the metadata information from this review
-                meta_data = X_test[:,start+review-1:start+review,84:]
-                char_tensor = torch.from_numpy(char2oh(str(gen_char)))
-                next_char = torch.cat((char_tensor, meta_data), dim=2)
-
-
-
-                #Append it to the character sampled
-                # go again until max length or escape char is hitkj.
-
-                break
-
-
-
 
 
 def loss_to_file(outputs, fname):
@@ -477,11 +438,7 @@ if __name__ == "__main__":
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
-    X_test = process_test_data(shuffled_data.iloc[0:1], get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
-    print(shuffled_data.iloc[0])
-    print(shuffled_data.iloc[1])
-
-    print(X_test)
+    X_test = process_test_data(shuffled_data, get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
 
     model = get_model(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
