@@ -341,8 +341,10 @@ def generate(model, X_test, cfg, computing_device):
         print(softmax.argmax())
 
 
-        batch_gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
-        print("Gen chars: ", batch_gen_chars)
+        gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
+        print("Gen chars: ", gen_chars)
+        sent = [[gen_chars]]
+        print(sent)
 
         for char in range(cfg['max_len']):
 
@@ -364,10 +366,9 @@ def generate(model, X_test, cfg, computing_device):
             print("Gen char:", gen_chars)
             print(type(gen_chars))
             print(type([gen_chars]))
-            batch_gen_chars = [a + b for a,b in zip(batch_gen_chars,gen_chars)]
-            print(batch_gen_chars)
 
         if batch_num == 10:
+
             break
 
         #Go through each review in the batch
