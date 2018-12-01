@@ -459,7 +459,6 @@ if __name__ == "__main__":
     test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
     out_fname = cfg['model_name'] + "output.txt"
     loss_out_fname = cfg['model_name'] + "loss_output.txt"
-
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
     train_data = train_data.iloc[0]
