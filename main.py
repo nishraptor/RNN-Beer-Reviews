@@ -43,8 +43,6 @@ def process_train_data(data, beer_styles, computing_device):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
 
-    print(data)
-
     # One-hot encoding the beer style
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
@@ -183,7 +181,9 @@ def train(model, data, val_index, cfg,computing_device):
 
     #Create the seperate dataloaders for Train and Validation
 
-    val_df, train_df = data[0:val_index], data[val_index:]
+    data_s = data.iloc[0:2]
+
+    val_df, train_df = data_s[0:val_index], data_s[val_index:]
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
@@ -464,7 +464,6 @@ if __name__ == "__main__":
     loss_out_fname = cfg['model_name'] + "loss_output.txt"
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
-    train_data = train_data.iloc[0:2]
 
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
