@@ -326,8 +326,10 @@ def generate(model, X_test, cfg, computing_device):
     X_test = X_test.to(computing_device)
     print("X_test:", X_test.shape)
 
+    num_batches =int(X_test.size()[1] / cfg['batch_size'])
+
     #Iterate through the testing array in batches of the batch size.
-    for batch_num in range(len(X_test), 2):
+    for batch_num in range(num_batches):
 
         #Compute the output of the model over the batch
         with torch.no_grad():
