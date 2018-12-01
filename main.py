@@ -181,7 +181,6 @@ def train(model, data, val_index, cfg,computing_device):
     val_df, train_df = data_s[1:], data_s[0:1]
     print('Val df',val_df)
     print('Train_df',train_df)
-    exit()
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
@@ -222,8 +221,9 @@ def train(model, data, val_index, cfg,computing_device):
             # Create the one-hot encoding of training data and labels
 
             input, target = process_train_data(minibatch_df, beer_styles, computing_device)
-            break
             print(input.size())
+
+            exit()
 
             input, target = input.to(computing_device), target.to(computing_device)
 
