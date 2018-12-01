@@ -181,6 +181,7 @@ def train(model, data, val_index, cfg,computing_device):
     val_df, train_df = data_s[0:1], data_s[1:]
     print('Val df',val_df)
     print('Train_df',train_df)
+    exit()
 
     minibatch_size = cfg['batch_size']
     num_batch = int(len(train_df.index) / minibatch_size)
