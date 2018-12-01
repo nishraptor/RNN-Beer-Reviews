@@ -103,7 +103,7 @@ def process_test_data(data, beer_styles):
     # TODO: Takes in pandas DataFrame and returns a numpy array (or a torch Tensor/ Variable)
     # that has all input features. Note that test data does not contain any review so you don't
     # have to worry about one hot encoding the data.
-
+    print('DATA!',data)
     # one hot encoded vector
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
@@ -220,6 +220,7 @@ def train(model, data, val_index, cfg,computing_device):
             # Create the one-hot encoding of training data and labels
 
             input, target = process_train_data(minibatch_df, beer_styles, computing_device)
+            break
             print(input.size())
 
             input, target = input.to(computing_device), target.to(computing_device)
@@ -456,21 +457,26 @@ def save_to_file(outputs, fname):
 if __name__ == "__main__":
     pd.set_option('display.expand_frame_repr', False)
     np.set_printoptions(threshold=np.nan)
-
-    train_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
-    test_data_fname = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
+    train_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Train.csv"
+    test_loc = "/datasets/cs190f-public/BeerAdvocateDataset/BeerAdvocate_Test.csv"
+    train_data_fname = "Beeradvocate_Train.csv"
+    test_data_fname = "Beeradvocate_Test.csv"
     out_fname = cfg['model_name'] + "output.txt"
     loss_out_fname = cfg['model_name'] + "loss_output.txt"
+
+    np.random.seed(1)
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
 
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
-    X_test = process_test_data(shuffled_data[0:1], get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
-
+    X_test = process_test_data(shuffled_data.iloc[0:1], get_beer_style(shuffled_data)) # Converting DataFrame to numpy array
     print(shuffled_data.iloc[0])
-    
+    print(shuffled_data.iloc[1])
+
+    print(X_test)
+
     model = get_model(cfg) # Replace this with model = <your model name>(cfg)
     if cfg['cuda']:
         computing_device = torch.device("cuda")
