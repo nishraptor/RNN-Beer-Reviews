@@ -36,6 +36,7 @@ def oh2char(vector):
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
     file = pd.read_csv(fname)
+    file = file.iloc[0]
     return file
 
 
