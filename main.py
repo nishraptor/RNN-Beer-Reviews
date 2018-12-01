@@ -43,6 +43,8 @@ def process_train_data(data, beer_styles, computing_device):
     # TODO: Input is a pandas DataFrame and return a numpy array (or a torch Tensor/ Variable)
     # that has all features (including characters in one hot encoded form).
 
+    print(data)
+
     # One-hot encoding the beer style
     style_vector = [[0 if char != letter else 1 for char in beer_styles]
                     for letter in data['beer/style']]
