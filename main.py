@@ -358,6 +358,7 @@ def generate(model, X_test, cfg, computing_device):
             with torch.no_grad():
                 output = model(input.float().to(computing_device))
 
+
             print(output.argmax())
 
             softmax = softmax_with_temperature(output.cpu().numpy())
