@@ -36,7 +36,6 @@ def oh2char(vector):
 def load_data(fname):
     # TODO: From the csv file given by filename and return a pandas DataFrame of the read csv.
     file = pd.read_csv(fname)
-    file = file.iloc[0]
     return file
 
 
@@ -463,6 +462,8 @@ if __name__ == "__main__":
 
     
     train_data = load_data(train_data_fname) # Generating the pandas DataFrame
+    train_data = train_data.iloc[0]
+
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
 
     shuffled_data, val_index = train_valid_split(train_data) # Splitting the train data into train-valid data
