@@ -335,14 +335,13 @@ def generate(model, X_test, cfg, computing_device):
         with torch.no_grad():
             start = batch_num * cfg['batch_size']
             end = (batch_num + 1) * cfg['batch_size']
+            print(X_test[:,stard:end,:])
             output = model(X_test[:,start:end,:])
             print("Model size:", output.size())
 
 
+
         softmax = softmax_with_temperature(output.cpu().numpy())
-        print("Softmax type:",type(softmax))
-        print("Softmax shape:", softmax.shape)
-        print("Softmax:", softmax.argmax())
 
 
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
