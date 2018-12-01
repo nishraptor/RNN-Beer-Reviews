@@ -340,9 +340,10 @@ def generate(model, X_test, cfg, computing_device):
         softmax = softmax_with_temperature(output.cpu().numpy())
         print(softmax.argmax())
 
-
+        strings = [''] * cfg['batch_size']
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
         print("Gen chars: ", gen_chars)
+        strings = [a + b for a,b in zip(strings, gen_chars)]
 
         for char in range(cfg['max_len']):
 
@@ -362,7 +363,8 @@ def generate(model, X_test, cfg, computing_device):
             print("Gen char:", gen_chars)
             print(type(gen_chars))
             print((gen_chars[0]))
-
+            strings = [a + b for a, b in zip(strings, gen_chars)]
+            print(strings)
 
             if char == 10:
                 break
