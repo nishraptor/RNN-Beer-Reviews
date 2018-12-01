@@ -222,7 +222,8 @@ def train(model, data, val_index, cfg,computing_device):
 
             input, target = process_train_data(minibatch_df, beer_styles, computing_device)
             print(input.size())
-            print(input[0:2,:,:])
+            print(input[-1,:,:])
+            print(target[-1,:,:])
             exit()
 
             input, target = input.to(computing_device), target.to(computing_device)
