@@ -354,7 +354,7 @@ def generate(model, X_test, cfg, computing_device):
             input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.long()), dim=2)
 
             with torch.no_grad():
-                output = model(input.float().to(computing_device))
+                output = model(input.float())
                 softmax = softmax_with_temperature(output)
                 gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1, -1)).sample()], torch.unbind(softmax, dim=1)))
 
