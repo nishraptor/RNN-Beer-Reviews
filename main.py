@@ -340,7 +340,9 @@ def generate(model, X_test, cfg, computing_device):
         softmax = softmax_with_temperature(output)
 
         strings = [''] * cfg['batch_size']
-        gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1,-1)).sample()], torch.unbind(softmax, dim=1)))
+        samples = Categorical(softmax.squeeze()).sample()
+        gen_chars = [alphabet[i] for i in samples]
+        #gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1,-1)).sample()], torch.unbind(softmax, dim=1)))
         #gen_chars = [alphabet[Categorical(softmax[:,dist,:].view(1,-1)).sample()] for dist in range(softmax.shape[1])]
         #gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].view(1,-1)) for dist in range(softmax.shape[1])]
         #strings = [a + b[0] for a,b in zip(strings, gen_chars)]
@@ -356,7 +358,9 @@ def generate(model, X_test, cfg, computing_device):
             with torch.no_grad():
                 output = model(input.float())
                 softmax = softmax_with_temperature(output)
-                gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1, -1)).sample()], torch.unbind(softmax, dim=1)))
+                #gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1, -1)).sample()], torch.unbind(softmax, dim=1)))
+                samples = Categorical(softmax.squeeze()).sample()
+                gen_chars = [alphabet[i] for i in samples]
 
             #gen_chars = [alphabet[Categorical(softmax[:, dist, :].view(1, -1)).sample()] for dist in
                          #range(softmax.shape[1])]
