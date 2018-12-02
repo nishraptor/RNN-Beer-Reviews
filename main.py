@@ -336,12 +336,11 @@ def generate(model, X_test, cfg, computing_device):
             output = model(X_test[:,start:end,:])
 
 
-
         softmax = softmax_with_temperature(output)
 
         strings = [''] * cfg['batch_size']
         samples = Categorical(softmax.squeeze()).sample()
-        print(samples)
+        print(samples.data())
         break
         gen_chars = [alphabet[i] for i in samples]
 
