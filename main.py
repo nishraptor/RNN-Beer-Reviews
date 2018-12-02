@@ -323,12 +323,12 @@ def generate(model, X_test, cfg, computing_device):
 
     #Iterate through the testing array in batches of the batch size.
     for batch_num in range(num_batches):
-
+        model.init_hidden(computing_device)
+        print('On Batch Number: ',batch_num," Out of: ", num_batches)
         #Compute the output of the model over the batch
         with torch.no_grad():
             start = batch_num * cfg['batch_size']
             end = (batch_num + 1) * cfg['batch_size']
-            print(X_test[:,start:end,:])
             output = model(X_test[:,start:end,:])
 
 
@@ -338,7 +338,6 @@ def generate(model, X_test, cfg, computing_device):
 
         strings = [''] * cfg['batch_size']
         gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
-        print("Gen chars: ", gen_chars)
         strings = [a + b[0] for a,b in zip(strings, gen_chars)]
 
         for char in range(cfg['max_len']):
