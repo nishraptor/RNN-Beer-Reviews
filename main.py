@@ -354,13 +354,18 @@ def generate(model, X_test, cfg, computing_device):
 
 
             softmax = softmax_with_temperature(output)
-            gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].view(1,-1)) for dist in
+            gen_chars = [alphabet[Categorical(softmax[:, dist, :].view(1, -1)).sample()] for dist in
                          range(softmax.shape[1])]
+
+            #gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].view(1,-1)) for dist in
+                         #range(softmax.shape[1])]
 
             #print("Gen char:", gen_chars)
             #print(type(gen_chars))
             #print((gen_chars[0]))
             strings = [a + b[0] for a, b in zip(strings, gen_chars)]
+
+            print("On next char")
 
             #if char == 100:
             #    break
