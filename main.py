@@ -340,8 +340,8 @@ def generate(model, X_test, cfg, computing_device):
 
         strings = [''] * cfg['batch_size']
         samples = Categorical(softmax.squeeze()).sample()
-        print(samples.data)
-       
+        
+        gen_chars = [alphabet[i] for i in samples]
 
         #gen_chars = list(map(lambda x: alphabet[Categorical(x.view(1,-1)).sample()], torch.unbind(softmax, dim=1)))
         #gen_chars = [alphabet[Categorical(softmax[:,dist,:].view(1,-1)).sample()] for dist in range(softmax.shape[1])]
