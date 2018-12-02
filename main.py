@@ -342,7 +342,7 @@ def generate(model, X_test, cfg, computing_device):
         #gen_chars = [alphabet[Categorical(softmax[:,dist,:].view(1,-1)).sample()] for dist in range(softmax.shape[1])]
         #gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].view(1,-1)) for dist in range(softmax.shape[1])]
         #strings = [a + b[0] for a,b in zip(strings, gen_chars)]
-        strings = list(starmap(lambda x: x[0]+x[1][0], zip(strings, gen_chars)))
+        strings = list(starmap(lambda x, y: x + y[0], zip(strings, gen_chars)))
 
         for char in range(cfg['max_len']):
 
@@ -368,7 +368,7 @@ def generate(model, X_test, cfg, computing_device):
             #print(type(gen_chars))
             #print((gen_chars[0]))
             #strings = [a + b[0] for a, b in zip(strings, gen_chars)]
-            strings = list(starmap(lambda x: x[0] + x[1][0], zip(strings, gen_chars)))
+            strings = list(starmap(lambda x, y: x + y[0], zip(strings, gen_chars)))
 
             #if char == 100:
             #    break
