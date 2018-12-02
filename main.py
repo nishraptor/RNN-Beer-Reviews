@@ -405,6 +405,7 @@ def get_model(cfg):
     elif (cfg['model_name'] == 'GRU'):
         return GRU(cfg)
 
+
 def old_softmax(output):
     temperature = cfg['gen_temp']
 
