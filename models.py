@@ -47,9 +47,9 @@ class baselineLSTM(nn.Module):
 
         return out
 
-class biLSTM(nn.Module):
+class LSTM(nn.Module):
     def __init__(self, config):
-        super(biLSTM, self).__init__()
+        super(LSTM, self).__init__()
 
         self.hidden_dim = config['hidden_dim']
         self.input_dim = config['input_dim']
@@ -65,7 +65,7 @@ class biLSTM(nn.Module):
 
         self.init_hidden(computing_device)
 
-        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim // 2, num_layers=self.layers, bidirectional=True)
+        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim, num_layers=self.layers)
 
         self.fc = nn.Linear(self.hidden_dim, self.output_dim)
 
@@ -73,8 +73,8 @@ class biLSTM(nn.Module):
     def init_hidden(self, computing_device):
 
         self.hidden = None
-        self.hidden = (torch.zeros(self.layers * 2, self.batch_size, self.hidden_dim // 2),
-                       torch.zeros(self.layers * 2, self.batch_size, self.hidden_dim // 2))
+        self.hidden = (torch.zeros(self.layers, self.batch_size, self.hidden_dim),
+                       torch.zeros(self.layers, self.batch_size, self.hidden_dim))
 
         self.hidden = [tensor.to(computing_device) for tensor in self.hidden]
 

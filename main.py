@@ -401,7 +401,7 @@ def get_model(cfg):
     if (cfg['model_name'] == 'baselineLSTM'):
         return baselineLSTM(cfg)
     elif (cfg['model_name'] == 'biLSTM'):
-        return biLSTM(cfg)
+        return LSTM(cfg)
     elif (cfg['model_name'] == 'GRU'):
         return GRU(cfg)
 
