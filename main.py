@@ -365,7 +365,6 @@ def generate(model, X_test, cfg, computing_device):
             #    break
         print(strings)
         save_to_file(strings,'_GeneratedText.txt')
-        break
 
 
 def loss_to_file(outputs, fname):
@@ -426,7 +425,7 @@ def save_to_file(string_list, fname):
     with open (fname, 'a+') as f:
         if string_list != None:
             for item in string_list:
-                f.write("%s\n" % item)
+                f.write("%s\n" % item.split('}')[0])
 
 
 
@@ -469,5 +468,5 @@ if __name__ == "__main__":
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
         outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
-        save_to_file(outputs, out_fname) # Save the generated outputs to a file
+        #save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
