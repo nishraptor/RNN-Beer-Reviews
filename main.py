@@ -337,22 +337,22 @@ def generate(model, X_test, cfg, computing_device):
         print(softmax.argmax())
 
         strings = [''] * cfg['batch_size']
-        gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].flatten()) for dist in range(softmax.shape[1])]
+        gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].view(1,-1)) for dist in range(softmax.shape[1])]
         strings = [a + b[0] for a,b in zip(strings, gen_chars)]
 
         for char in range(cfg['max_len']):
 
             #Get meta data
             meta_data = X_test[:,start:end,84:]
-            char_tensor_list = [torch.from_numpy(char2oh(c)) for c in gen_chars]
-            input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.cpu().long()), dim=2)
+            char_tensor_list = [torch.from_numpy(char2oh(c)).to(computing_device) for c in gen_chars]
+            input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.long()), dim=2)
 
             with torch.no_grad():
                 output = model(input.float().to(computing_device))
 
 
             softmax = softmax_with_temperature(output)
-            gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].flatten()) for dist in
+            gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].view(1,-1)) for dist in
                          range(softmax.shape[1])]
 
             #print("Gen char:", gen_chars)
@@ -411,7 +411,7 @@ def old_softmax(output):
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
-    return torch.exp(output/temperature)/torch.sum(torch.exp(output/temperature), dim=2, keepdim=True)[:,:,np.newaxis]
+    return torch.exp(output/temperature)/torch.sum(torch.exp(output/temperature), dim=2, keepdim=True)
 
 def save_to_file(string_list, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
