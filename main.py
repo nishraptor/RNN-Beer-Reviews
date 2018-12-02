@@ -333,7 +333,7 @@ def generate(model, X_test, cfg, computing_device):
 
 
 
-        softmax = softmax_with_temperature(output.cpu().numpy())
+        softmax = softmax_with_temperature(output)
         print(softmax.argmax())
 
         strings = [''] * cfg['batch_size']
@@ -351,7 +351,7 @@ def generate(model, X_test, cfg, computing_device):
                 output = model(input.float().to(computing_device))
 
 
-            softmax = softmax_with_temperature(output.cpu().numpy())
+            softmax = softmax_with_temperature(output)
             gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:, dist, :].flatten()) for dist in
                          range(softmax.shape[1])]
 
@@ -411,7 +411,7 @@ def old_softmax(output):
 
 def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
-    return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,:,np.newaxis]
+    return torch.exp(output/temperature)/torch.sum(torch.exp(output/temperature), dim=2, keepdim=True)[:,:,np.newaxis]
 
 def save_to_file(string_list, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
