@@ -419,12 +419,14 @@ def save_to_file(string_list, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
     # the file in .txt format.
 
+    print(string_list)
     #Correct filename
     fname = cfg['model_name'] + str(cfg['gen_temp']) + fname
 
     with open (fname, 'a+') as f:
-        for item in string_list:
-            f.write("%s\n" % item)
+        if string_list != None:
+            for item in string_list:
+                f.write("%s\n" % item)
 
 
 
