@@ -364,6 +364,7 @@ def generate(model, X_test, cfg, computing_device):
             #if char == 100:
             #    break
         print(strings)
+        break
 
 
 
