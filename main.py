@@ -340,7 +340,7 @@ def generate(model, X_test, cfg, computing_device):
 
         strings = [''] * cfg['batch_size']
         samples = Categorical(softmax.squeeze()).sample()
-        print(samples.data())
+        print(samples.data)
         break
         gen_chars = [alphabet[i] for i in samples]
 
