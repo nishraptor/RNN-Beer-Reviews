@@ -345,11 +345,11 @@ def generate(model, X_test, cfg, computing_device):
         #gen_chars = [np.random.choice(list(alphabet), 1, p=softmax[:,dist,:].view(1,-1)) for dist in range(softmax.shape[1])]
         #strings = [a + b[0] for a,b in zip(strings, gen_chars)]
         strings = list(starmap(lambda x, y: x + y[0], zip(strings, gen_chars)))
+        # Get meta data
+        meta_data = X_test[:, start:end, 84:]
 
         for char in range(cfg['max_len']):
 
-            #Get meta data
-            meta_data = X_test[:,start:end,84:]
             char_tensor_list = [torch.from_numpy(char2oh(c)).to(computing_device) for c in gen_chars]
             input = torch.cat((torch.stack(char_tensor_list).permute(1, 0, 2), meta_data.long()), dim=2)
 
