@@ -420,7 +420,7 @@ def save_to_file(string_list, fname):
     # the file in .txt format.
 
     #Correct filename
-    fname = cfg['model_name'] + str(cfg[gen_temp]) + fname
+    fname = cfg['model_name'] + str(cfg['gen_temp']) + fname
 
     with open (fname, 'a+') as f:
         for item in string_list:
