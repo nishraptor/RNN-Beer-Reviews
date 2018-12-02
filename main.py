@@ -364,8 +364,8 @@ def generate(model, X_test, cfg, computing_device):
             #if char == 100:
             #    break
         print(strings)
+        save_to_file(strings,'_GeneratedText.txt')
         break
-
 
 
 def loss_to_file(outputs, fname):
@@ -415,10 +415,17 @@ def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
     return np.exp(output/temperature)/np.sum(np.exp(output/temperature), axis=2)[:,:,np.newaxis]
 
-def save_to_file(outputs, fname):
+def save_to_file(string_list, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
     # the file in .txt format.
-    raise NotImplementedError
+
+    #Correct filename
+    fname = cfg['model_name'] + str(cfg[gen_temp]) + fname
+
+    with open (fname, 'a+') as f:
+        for item in string_list:
+            f.write("%s\n" % item)
+
 
 
 if __name__ == "__main__":
