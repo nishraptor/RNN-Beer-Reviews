@@ -323,6 +323,8 @@ def generate(model, X_test, cfg, computing_device):
 
     num_batches =int(X_test.size()[1] / cfg['batch_size'])
 
+    string_list = []
+
     #Iterate through the testing array in batches of the batch size.
     for batch_num in range(num_batches):
         model.init_hidden(computing_device)
@@ -373,7 +375,9 @@ def generate(model, X_test, cfg, computing_device):
             #if char == 100:
             #    break
         print(strings)
-        save_to_file(strings,'_GeneratedText.txt')
+        string_list.append(strings)
+
+    save_to_file(string_list,'_GeneratedText.txt')
 
 def loss_to_file(outputs, fname):
 
@@ -422,18 +426,19 @@ def softmax_with_temperature(output):
     temperature = cfg['gen_temp']
     return torch.exp(output/temperature)/torch.sum(torch.exp(output/temperature), dim=2, keepdim=True)
 
-def save_to_file(string_list, fname):
+def save_to_file(strings_list, fname):
     # TODO: Given the list of generated review outputs and output file name, save all these reviews to
     # the file in .txt format.
 
-    print(string_list)
+    print(strings_list)
     #Correct filename
     fname = cfg['model_name'] + str(cfg['gen_temp']) + fname
 
-    with open (fname, 'a+') as f:
-        if string_list != None:
-            for item in string_list:
-                f.write("%s\n" % item.split('}')[0])
+    for string_list in strings_list:
+        with open (fname, 'a+') as f:
+            if string_list != None:
+                for item in string_list:
+                    f.write("%s\n" % item.split('}')[0])
 
 
 
