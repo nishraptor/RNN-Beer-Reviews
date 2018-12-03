@@ -463,6 +463,7 @@ if __name__ == "__main__":
     print("Loading train data...")
 
     test_data = load_data(test_data_fname) # Generating the pandas DataFrame
+    test_data = test_data[:len(test_data)]
 
     print("Loading test data...")
 
