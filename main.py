@@ -436,20 +436,18 @@ def calc_bleu_score(model, data, val_index, cfg,computing_device):
 
     gen_sentences = generate(model, process_train_data(val_df, beer_styles, computing_device), cfg, computing_device)
 
+    gen_sentences = [sent for sent_list in gen_sentences for sent in sent_list]
+
     for i in range(len(gen_sentences)):
 
         split_sent = gen_sentences[i].split(" ")
 
         score = bleu_score.sentence_bleu([val_sentences[i]], split_sent)
 
-    
+        bleu_scores_list.append(score)
 
 
-
-
-
-
-
+    return bleu_scores_list
 
 def old_softmax(output):
     temperature = cfg['gen_temp']
@@ -515,6 +513,7 @@ if __name__ == "__main__":
     else:
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
-        outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
+        print(calc_bleu_score(model, shuffled_data, val_index, cfg, computing_device))
+        #outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
         #save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
