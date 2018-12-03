@@ -379,7 +379,6 @@ def generate(model, X_test, cfg, computing_device):
             #    break
         print(strings)
         save_to_file(strings, '_GeneratedTest.txt')
-        break
         strings_list.append(strings)
 
     return strings_list
@@ -513,7 +512,7 @@ if __name__ == "__main__":
     else:
         model.load_state_dict(torch.load(cfg['model_name'] + '.pth'))
         model.eval()
-        #print(calc_bleu_score(model, shuffled_data, val_index, cfg, computing_device))
-        outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
+        print(calc_bleu_score(model, shuffled_data, val_index, cfg, computing_device))
+        #outputs = generate(model, X_test, cfg, computing_device) # Generate the outputs for test data
         #save_to_file(outputs, out_fname) # Save the generated outputs to a file
 
