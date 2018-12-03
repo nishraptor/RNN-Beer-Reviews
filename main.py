@@ -433,7 +433,7 @@ def calc_bleu_score(model, data, val_index, cfg,computing_device):
 
     val_sentences = [str(sent).split(" ") for sent in val_df['review/text'].tolist()]
 
-    gen_sentences = generate(model, process_train_data(val_df[:100], beer_styles, computing_device), cfg, computing_device)
+    gen_sentences = generate(model, process_test_data(val_df[:100], beer_styles, computing_device), cfg, computing_device)
 
     gen_sentences = [sent for sent_list in gen_sentences for sent in sent_list]
 
