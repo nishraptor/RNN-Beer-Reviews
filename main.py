@@ -323,6 +323,7 @@ def generate(model, X_test, cfg, computing_device):
 
     num_batches =int(X_test.size()[1] / cfg['batch_size'])
 
+    strings_list = []
 
     #Iterate through the testing array in batches of the batch size.
     for batch_num in range(num_batches):
@@ -379,7 +380,11 @@ def generate(model, X_test, cfg, computing_device):
         print(strings)
         save_to_file(strings, '_GeneratedTest.txt')
 
-        break
+        strings_list.append(strings)
+
+    return strings_list
+
+
 
 
 def loss_to_file(outputs, fname):
@@ -418,6 +423,25 @@ def get_model(cfg):
         return LSTM(cfg)
     elif (cfg['model_name'] == 'GRU'):
         return GRU(cfg)
+
+def calc_bleu_score(model, data, val_index, cfg,computing_device):
+
+    bleu_scores_list = []
+
+    val_df, train_df = data[:val_index], data[val_index:]
+
+    beer_styles = get_beer_style(data)
+
+    val_sentences = [sent.split(" ") for sent in val_df['review/text'].tolist()]
+
+    gen_sentences = generate(model, process_train_data(val_df, beer_styles, computing_device), cfg, computing_device)
+
+
+    
+
+
+
+
 
 
 def old_softmax(output):
