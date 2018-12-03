@@ -379,6 +379,7 @@ def generate(model, X_test, cfg, computing_device):
         print(strings)
         save_to_file(strings, '_GeneratedTest.txt')
 
+        break
 
 
 def loss_to_file(outputs, fname):
