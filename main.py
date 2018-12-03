@@ -419,7 +419,7 @@ def get_model(cfg):
 
     if (cfg['model_name'] == 'baselineLSTM'):
         return baselineLSTM(cfg)
-    elif (cfg['model_name'] == 'biLSTM'):
+    elif (cfg['model_name'] == 'LSTM'):
         return LSTM(cfg)
     elif (cfg['model_name'] == 'GRU'):
         return GRU(cfg)
@@ -436,8 +436,15 @@ def calc_bleu_score(model, data, val_index, cfg,computing_device):
 
     gen_sentences = generate(model, process_train_data(val_df, beer_styles, computing_device), cfg, computing_device)
 
+    for i in range(len(gen_sentences)):
+
+        split_sent = gen_sentences[i].split(" ")
+
+        score = bleu_score.sentence_bleu([val_sentences[i]], split_sent)
 
     
+
+
 
 
 
